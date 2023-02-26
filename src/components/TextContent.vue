@@ -700,7 +700,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_1"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-transparent"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-transparent"
                                         aria-label="Default select example">
                                         <option value="Open, Close" selected>Open, Close</option>
                                         <option value="None">None</option>
@@ -719,7 +719,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_2"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -732,7 +732,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_3"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Close" selected>Open, Close</option>
                                         <option value="None">None</option>
@@ -752,7 +752,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_4"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -765,7 +765,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_5"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -778,7 +778,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_6"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Close" selected>Open, Close</option>
                                         <option value="None">None</option>
@@ -798,7 +798,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_7"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -812,7 +812,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_8"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -826,7 +826,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_9"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -839,7 +839,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_10"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Close" selected>Open, Close</option>
                                         <option value="None">None</option>
@@ -860,7 +860,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_11"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -874,7 +874,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_12"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -888,7 +888,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_13"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -902,7 +902,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_14"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Open" selected>Open, Open</option>
                                         <option value="Open, Close">Open, Close</option>
@@ -916,7 +916,7 @@
                                 <div class="text-dark p-2.5 mt-1 me-2 w-40 bg-white rounded-lg">
                                     <select id="select_15"
                                         class="form-select appearance-noneblockw-fullpx-3 py-1.5text-basefont-normal text-text1 font-sans text-sm font-normal bg-white bg-clip-padding bg-no-repeatborder border-none roundedtransitionease-in-out m-0
-                                                                                                                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                                                                                                                                                                                                            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         aria-label="Default select example">
                                         <option value="Open, Close" selected>Open, Close</option>
                                         <option value="None">None</option>
@@ -935,9 +935,707 @@
 
         </div>
 
+        <div class="pt-12" id="div_img_first" hidden>
+            <div class="mr-20 ml-20 mt-10 mb-3 bg-bginput rounded-2xl flex" id="img1_first" ref="printcontent0">
+                <div class="w-20 ml-auto flex items-center h-full">
+                    <div class="ml-auto mr-auto">
+
+                    </div>
+                </div>
+                <div class="flex flex-col mt-3">
+
+                    <div class="w-8/12 mr-auto ml-auto bg-white rounded-none">
+                        <div class="text-left font-sans ml-5 mr-5 mt-3">
+                            <div class="flex w-full">
+                                <h1 class="text-sm" id="name_0"></h1>
+                                <div class="ml-auto">
+                                    <h1 class="text-xxss font-light" id="status1_0"></h1>
+                                    <h1 class="text-xxss font-light" id="status2_0"></h1>
+                                </div>
+                            </div>
+
+                            <div class="flex h-full mt-2 mb-3">
+                                <img src="" alt="" id="img_src_1" class="mr-auto" style="width: 49%;">
+                                <img src="" alt="" id="img_src_2" class="ml-auto" style="width: 49%;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row gap-2 text-center mt-2 mb-3 pl-64 font-sans font-light">
+                        <a>
+                            <button type="button"
+                                class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Preview<svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                </svg>
+
+                            </button>
+                        </a>
+                        <a>
+                            <button type="button" @click="adjust(1)"
+                                class="inline-flex items-center text-white bg-text2 border-lg py-2.5 px-14 focus:outline-none hover:bg-text1 rounded-lg text-lg">Adjust<svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                                </svg>
+
+                            </button>
+                        </a>
+                        <a>
+                            <button @click="printThis(1)" type="button"
+                                class="inline-flex text-btn1 bg-[#F6F6F6] border-1 border-blue-800 hover:bg-btn33 py-2.5 px-14 rounded-lg text-lg">
+                                Download<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
+                                </svg>
+
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <button type="button"
+                    class="ml-auto flex items-center hover:bg-[#b6abab] rounded-r-2xl w-28 active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(1)">
+                    <div class="ml-auto mr-auto">
+                        <svg class="h-12 w-12 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+
+
+            <!-- 2 -->
+            <div class="mr-20 ml-20 mt-10 mb-3 bg-[#d0c4c4] rounded-2xl flex" id="img2_first" ref="printcontent1" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] rounded-l-2xl active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(2)">
+                    <div class="ml-auto mr-auto">
+                        <svg class="h-12 w-12 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                </button>
+                <div class="flex flex-col mt-3">
+                    <div class="w-7/12 mr-auto ml-auto bg-white rounded-none">
+                        <div class="text-left font-sans ml-5 mr-5 mt-3">
+                            <div class="flex w-full">
+                                <h1 class="text-sm" id="name_1"></h1>
+                                <div class="ml-auto">
+                                    <h1 class="text-xxss font-light" id="status1_1"></h1>
+                                    <h1 class="text-xxss font-light" id="status2_1"></h1>
+                                </div>
+                            </div>
+                            <div class="flex flex-col w-full mt-2">
+                                <img src="" alt="" id="img_src_3" class="mr-auto ml-auto" style="width: 99%; height: 50%;">
+                                <img src="" alt="" id="img_src_4" class="mr-auto ml-auto mb-3 mt-3"
+                                    style="width: 99%; height: 50%;">
+                            </div>
+                        </div>
+                        <div class="text-left ml-20 mr-20 mt-2 mb-3">
+                            <div class="w-full">
+                                <img src="" alt="" id="img_src_4" class="mr-auto ml-auto">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-2 text-center mt-2 mb-3 pl-48 font-sans font-light">
+                        <a>
+                            <button type="button"
+                                class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Preview<svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                </svg>
+
+                            </button>
+                        </a>
+                        <a>
+                            <button type="button" @click="adjust(2)"
+                                class="inline-flex items-center text-white bg-text2 border-lg py-2.5 px-14 focus:outline-none hover:bg-text1 rounded-lg text-lg">Adjust<svg
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-6 h-6 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                                </svg>
+                            </button>
+                        </a>
+                        <a>
+                            <button @click="printThis(2)" type="button"
+                                class="inline-flex text-btn1 bg-[#F6F6F6] border-1 border-blue-800 hover:bg-btn33 py-2.5 px-14 rounded-lg text-lg">
+                                Download<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <button type="button"
+                    class="ml-auto flex items-center hover:bg-[#b6abab] rounded-r-2xl w-20 active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(2)">
+                    <div class="ml-auto mr-auto">
+                        <svg class="h-12 w-12 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </div>
+                </button>
+            </div>
+
+            <!-- 3 -->
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img3_first" ref="printcontent2" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(3)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_2"></h1>
+                            <h1 id="status1_2" class="ml-auto"></h1>
+                            <h1 id="status2_2" class="ml-auto"></h1>
+                        </div>
+                    </div>
+                    <div class="flex h-full">
+                        <img src="" alt="" id="img_src_5" class="mr-auto" style="width: 49%;">
+                        <img src="" alt="" id="img_src_6" class="ml-auto" style="width: 49%;">
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(3)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(3)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(3)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img4_first" ref="printcontent3" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(4)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_3"></h1>
+                            <h1 id="status1_3" class="ml-auto"></h1>
+                            <h1 id="status2_3" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_7" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_8" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(4)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(4)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(4)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img5_first" ref="printcontent4" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(5)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_4"></h1>
+                            <h1 id="status1_4" class="ml-auto"></h1>
+                            <h1 id="status2_4" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_9" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_10" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(5)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(5)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(5)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img6_first" ref="printcontent5" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(6)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_5"></h1>
+                            <h1 id="status1_5" class="ml-auto"></h1>
+                            <h1 id="status2_5" class="ml-auto"></h1>
+                        </div>
+                    </div>
+                    <div class="flex h-full">
+                        <img src="" alt="" id="img_src_11" class="mr-auto" style="width: 49%;">
+                        <img src="" alt="" id="img_src_12" class="ml-auto" style="width: 49%;">
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(6)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(6)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(6)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img7_first" ref="printcontent6" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(7)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_6"></h1>
+                            <h1 id="status1_6" class="ml-auto"></h1>
+                            <h1 id="status2_6" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_13" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_14" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(7)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(7)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(7)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img8_first" ref="printcontent7" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(8)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_7"></h1>
+                            <h1 id="status1_7" class="ml-auto"></h1>
+                            <h1 id="status2_7" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_15" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_16" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(8)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(8)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(8)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img9_first" ref="printcontent8" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(9)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_8"></h1>
+                            <h1 id="status1_8" class="ml-auto"></h1>
+                            <h1 id="status2_8" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_17" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_18" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(9)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(9)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(9)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img10_first" ref="printcontent9" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(10)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_9"></h1>
+                            <h1 id="status1_9" class="ml-auto"></h1>
+                            <h1 id="status2_9" class="ml-auto"></h1>
+                        </div>
+                    </div>
+                    <div class="flex h-full">
+                        <img src="" alt="" id="img_src_19" class="mr-auto" style="width: 49%;">
+                        <img src="" alt="" id="img_src_20" class="ml-auto" style="width: 49%;">
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(10)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(10)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(10)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img11_first" ref="printcontent10" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(11)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_10"></h1>
+                            <h1 id="status1_10" class="ml-auto"></h1>
+                            <h1 id="status2_10" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_21" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_22" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(11)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(11)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(11)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img12_first" ref="printcontent11" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(12)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_11"></h1>
+                            <h1 id="status1_11" class="ml-auto"></h1>
+                            <h1 id="status2_11" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_23" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_24" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(12)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(12)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(12)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img13_first" ref="printcontent12" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(13)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_12"></h1>
+                            <h1 id="status1_12" class="ml-auto"></h1>
+                            <h1 id="status2_12" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_25" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_26" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(13)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(13)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(13)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img14_first" ref="printcontent13" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(14)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_13"></h1>
+                            <h1 id="status1_13" class="ml-auto"></h1>
+                            <h1 id="status2_13" class="ml-auto"></h1>
+                        </div>
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_27" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-left ml-20 mr-20 mt-5 mb-5">
+                        <div class="w-full">
+                            <img src="" alt="" id="img_src_28" class="mr-auto ml-auto">
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(14)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(14)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="next_image_first(14)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/right-arrow-removebg-preview.png">
+                    </div>
+                </button>
+            </div>
+
+            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img15_first" ref="printcontent14" hidden>
+                <button type="button"
+                    class="w-20 mr-auto flex items-center hover:bg-[#b6abab] active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]"
+                    @click="back_image_first(15)">
+                    <div class="ml-auto mr-auto">
+                        <img alt="" width="40px" src="../image/left-arrow-removebg-preview.png">
+                    </div>
+                </button>
+                <div class="w-8/12 mr-auto ml-auto mt-10 mb-10 bg-white rounded-lg shadow-lg">
+                    <div class="text-left ml-20 mr-20 mt-5">
+                        <div class="flex">
+                            <h1 id="name_14"></h1>
+                            <h1 id="status1_14" class="ml-auto"></h1>
+                            <h1 id="status2_14" class="ml-auto"></h1>
+                        </div>
+                    </div>
+                    <div class="flex h-full">
+                        <img src="" alt="" id="img_src_29" class="mr-auto" style="width: 49%;">
+                        <img src="" alt="" id="img_src_30" class="ml-auto" style="width: 49%;">
+                    </div>
+                    <div class="text-center mt-5 mb-2">
+                        <button type="button" @click="adjust(15)"
+                            class="inline-flex items-center text-white bg-btn1 border-lg py-2.5 px-14 focus:outline-none hover:bg-btn11 rounded-lg text-lg">Adjust
+                        </button>
+                        <button @click="printThis(15)" type="button"
+                            class="inline-flex  text-white bg-cyan-500 hover:bg-cyan-600 py-2.5 px-14 mt-5 mb-2 rounded-lg text-lg">
+                            Download
+                        </button>
+                    </div>
+                </div>
+                <button type="button"
+                    class="w-20 ml-auto flex items-center active:bg-[#b6abab] focus:outline-none focus:ring focus:bg-[#ded2d2]">
+
+                </button>
+            </div>
+
+        </div>
 
         <div id="div_img" hidden>
-            <div class="mr-20 ml-20 mt-10 mb-10 bg-[#d0c4c4] rounded-lg flex" id="img1">
+            <div class="relative bg-bginput h-96 w-120 mx-auto overflow-hidden rounded-2xl mb-3 mdd:h-96 md:h-0 ss:h-0 flex"
+                id="img1">
                 <div class="w-20 ml-auto flex items-center h-full">
                     <div class="ml-auto mr-auto">
 
@@ -1474,10 +2172,6 @@
                     </div>
                 </button>
             </div>
-
-
-
-
         </div>
 
         <div id="link" hidden>
@@ -2087,6 +2781,7 @@ export default {
 
             var html = "";
             axios.post('http://127.0.0.1:5000/upload_files',
+                // axios.post('http://localhost:3000/upload_files',
                 formData,
                 {
                     headers: {
