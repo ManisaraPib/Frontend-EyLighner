@@ -45,10 +45,12 @@ def upload_file():
         # Get request file from frontend
         #number = request.form.get("number")
         # print(request.files)
-        print(request.files[0])
-        print(type(request.files[0]['files']))
-        openeye_image = request.files['image_f0_1']
-        closeeye_image = request.files['image_f0_2']
+        data = json.loads(str(request.files))
+        print (data)
+        print(request.files)
+        print(type(request.files['f0_1']))
+        openeye_image = request.files['f0_1']
+        closeeye_image = request.files['f0_2']
         
         # Check if file not exist
         if 'open_image' not in request.files:
