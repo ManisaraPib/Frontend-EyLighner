@@ -30,23 +30,25 @@ app = Flask(__name__)
 api= Api(app)
 UPLOAD_FOLDER = './image_storage'
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 CORS(app)
 CORS(app, resources={r'/*': {'origins': '*'}},CORS_SUPPORTS_CREDENTIALS = True)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
 #Upload 
-@app.route('/home/', methods=['GET', 'POST'])
+@app.route('/upload_files', methods=['GET', 'POST'])
 def upload_file():
-
     # Get post method from frontend
     if request.method == 'POST':
         print("uploading...")
 
         # Get request file from frontend
-        number = request.form.get("number")
-        openeye_image = request.files['open_image']
-        closeeye_image = request.files['close_image']
+        #number = request.form.get("number")
+        # print(request.files)
+        print(request.files[0])
+        print(type(request.files[0]['files']))
+        openeye_image = request.files['image_f0_1']
+        closeeye_image = request.files['image_f0_2']
         
         # Check if file not exist
         if 'open_image' not in request.files:
@@ -56,25 +58,25 @@ def upload_file():
 
 
         # Save file to givened directoery
-        openeye_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{str(number)}open_eye.jpg")
-        closeeye_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{str(number)}close_eye.jpg")
+        openeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "open_eye.jpg")
+        closeeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "close_eye.jpg")
         openeye_image.save(openeye_path)
         closeeye_image.save(closeeye_path)
         print ("Save images")
 
 #Select Image from Folder
-def select():
-    if request.method == "POST":
-        image_name = request.form.get("fname")
-        print(image_name)
-        if image_name == "1close_eye":
-            file_name = "1close_eye"
+# def select():
+#     if request.method == "POST":
+#         image_name = request.form.get("fname")
+#         print(image_name)
+#         if image_name == "1close_eye":
+#             file_name = "1close_eye"
 
-        if image_name == "1open_eye":
-            file_name = "1open_eye"
+#         if image_name == "1open_eye":
+#             file_name = "1open_eye"
 
-        image_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{file_name}.jpg")
-        print(image_path)
+#         image_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{file_name}.jpg")
+#         print(image_path)
 
 
 #Contact Page
