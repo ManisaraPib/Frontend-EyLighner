@@ -5,6 +5,9 @@ from flask_restful import Api,Resource,abort
 from flask import Flask, request,jsonify,json
 from flask_cors import CORS, cross_origin
 import pathlib
+import numpy
+import cv2 as cv
+
 from PIL import Image
 import time
 import smtplib
@@ -12,7 +15,8 @@ import os
 import asyncio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from zmq import Message
+from werkzeug.datastructures import ImmutableMultiDict,FileStorage
+# from zmq import Message
 #from flask import send_file
 #from urllib import response
 #from flask_sqlalchemy import SQLAlchemy
@@ -42,13 +46,22 @@ def upload_file():
     if request.method == 'POST':
         print("uploading...")
 
-        # Get request file from frontend
-        #number = request.form.get("number")
-        # print(request.files)
-        data = json.loads(str(request.files))
-        print (data)
         print(request.files)
-        print(type(request.files['f0_1']))
+
+        recieved_list = request.files.getlist('files')
+        for i in range (len(recieved_list)):
+            fileStorage = recieved_list[i]
+            print(i,fileStorage)
+            file_bytes = fileStorage.read()
+            # print(file_bytes)
+
+            #convert string data to numpy array
+            file_bytes = numpy.frombuffer(file_bytes, numpy.uint8)
+            # convert numpy array to image
+            img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
+            cv.imwrite(f"result{i}.jpg", img)
+
+
         openeye_image = request.files['f0_1']
         closeeye_image = request.files['f0_2']
         
