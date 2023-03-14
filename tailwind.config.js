@@ -94,6 +94,8 @@ module.exports = {
       0: '0px',
       0.5: '0.02rem',
       '0.75': '0.07rem',
+      '0.95': '0.09rem',
+      '0.55': '0.005  rem',
       1: '0.25rem',
       1.5: '0.375rem',
       2: '0.5rem',
@@ -457,6 +459,9 @@ module.exports = {
         lineHeight: '0.5rem'
       }],
       'xxss': ['0.7rem', {
+        lineHeight: '0.8rem'
+      }],
+      'xxsss': ['0.71rem', {
         lineHeight: '0.8rem'
       }],
       xs: ['0.75rem', {
