@@ -46,12 +46,12 @@ def upload_file():
     if request.method == 'POST':
         print("uploading...")
 
-        print(request.files)
+        print("DEBUG| upload-file request : ",request.files)
 
         recieved_list = request.files.getlist('files')
         for i in range (len(recieved_list)):
             fileStorage = recieved_list[i]
-            print(i,fileStorage)
+            print("DEBUG| save file : ",i,fileStorage)
             file_bytes = fileStorage.read()
             # print(file_bytes)
 
@@ -62,8 +62,10 @@ def upload_file():
             cv.imwrite(f"result{i}.jpg", img)
 
 
-        openeye_image = request.files['f0_1']
-        closeeye_image = request.files['f0_2']
+
+
+        # openeye_image = request.files['f0_1']
+        # closeeye_image = request.files['f0_2']
         
         # Check if file not exist
         if 'open_image' not in request.files:
@@ -72,12 +74,12 @@ def upload_file():
             return 'close_image is not exist'
 
 
-        # Save file to givened directoery
-        openeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "open_eye.jpg")
-        closeeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "close_eye.jpg")
-        openeye_image.save(openeye_path)
-        closeeye_image.save(closeeye_path)
-        print ("Save images")
+        # # Save file to givened directoery
+        # openeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "open_eye.jpg")
+        # closeeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "close_eye.jpg")
+        # openeye_image.save(openeye_path)
+        # closeeye_image.save(closeeye_path)
+        # print("DEBUG| save all images done ! ")
 
 #Select Image from Folder
 # def select():
