@@ -81,6 +81,17 @@ def upload_file():
         closeeye_image.save(closeeye_path)
         print ("Save images")
 
+  # Call the algorithm code
+    process = subprocess.Popen(['python', 'algorithm.py', file1_path, file2_path], stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    
+    # Parse the output and send back to the frontend
+    result = output.decode('utf-8').strip()
+    response = {'result': result, 'file1': file1_path, 'file2': file2_path}
+    return jsonify(response)
+
+
+
 #Select Image from Folder
 # def select():
 #     if request.method == "POST":
