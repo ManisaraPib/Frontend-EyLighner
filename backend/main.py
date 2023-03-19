@@ -7,7 +7,7 @@ from flask_cors import CORS, cross_origin
 import pathlib
 import numpy
 import cv2 as cv
-
+from models import Files
 from PIL import Image
 import time
 import smtplib
@@ -47,8 +47,9 @@ def upload_file():
     # Get post method from frontend
     if request.method == 'POST':
         print("uploading...")
-
-        print(request.files)
+        print(list(request.form.items()))
+        form_list = [Files(*item) for item in list(request.form.items())]
+        print(form_list)
 
         recieved_list = request.files.getlist('files')
         for i in range (len(recieved_list)):
@@ -61,7 +62,7 @@ def upload_file():
             file_bytes = numpy.frombuffer(file_bytes, numpy.uint8)
             # convert numpy array to image
             img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
-            cv.imwrite(f"result{i}.jpg", img)
+            cv.imwrite(f"Image_{i}.jpg", img)
 
 
         openeye_image = request.files['f0_1']
@@ -81,14 +82,8 @@ def upload_file():
         closeeye_image.save(closeeye_path)
         print ("Save images")
 
-  # Call the algorithm code
-    process = subprocess.Popen(['python', 'algorithm.py', file1_path, file2_path], stdout=subprocess.PIPE)
-    output, error = process.communicate()
-    
-    # Parse the output and send back to the frontend
-    result = output.decode('utf-8').strip()
-    response = {'result': result, 'file1': file1_path, 'file2': file2_path}
-    return jsonify(response)
+
+
 
 
 
