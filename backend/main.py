@@ -12,10 +12,12 @@ from PIL import Image
 import time
 import smtplib
 import os
+import re
 import asyncio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
+
 # from zmq import Message
 #from flask import send_file
 #from urllib import response
@@ -47,10 +49,14 @@ def upload_file():
         print("uploading...")
         print(list(request.form.items()))
         form_list = [Files(*item) for item in list(request.form.items())]
-        print(form_list)
+        # print(type(form_list))
+        # file_list = [Files(*x) for x in form_list]
+        
+        # for i in range (len(form_list)):
+            
 
         recieved_list = request.files.getlist('files')
-        for i in range (len(recieved_list)):
+        for i in range (1,len(recieved_list)):
             fileStorage = recieved_list[i]
             print(i,fileStorage)
             file_bytes = fileStorage.read()
@@ -61,6 +67,21 @@ def upload_file():
             # convert numpy array to image
             img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
             cv.imwrite(f"Image_{i}.jpg", img)
+
+        # filtered_strings = [x for x in form_list if [int(match) for match in re.findall(r"\d+",  x.content)] <= 2]
+        data = []
+        for x in form_list:
+            if 'files' in x.image_id :
+                num = re.findall(r'\d+', x.content)
+                status = True
+                for i in num:
+                    if int(i) > len(recieved_list):
+                        status = False
+                if status == True:
+                    data.append(x)
+
+        # print("filtered_strings",filtered_strings)
+        print("Filtered ",data,len(recieved_list))
 
 
         openeye_image = request.files['f0_1']
