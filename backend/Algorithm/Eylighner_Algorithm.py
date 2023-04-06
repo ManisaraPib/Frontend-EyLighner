@@ -4,6 +4,7 @@ from shapely.geometry import Polygon, Point
 import numpy as np
 from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
+from IPython.display import Image as imgdisp, display
 
 
 def landmarks_list(im):
@@ -117,7 +118,7 @@ def transform(image1, image2):
     image = cv2.imread('output.jpg')
     return image
 
-def result(image1, image2):
+def align_result(image1, image2):
        
     auto_result1 = automatic_brightness_and_contrast(image1)
     tf_1 = transform(image1, image2)
@@ -523,9 +524,9 @@ def EBH_Right_Eye(img):
 
   return distance_right
 
-##############################################################################################################
-##############################################################################################################
-################################################## Image #####################################################
+##################################################################################################################
+##################################################################################################################
+################################################## Image #########################################################
 
 ################################################## Same Time #####################################################
 
@@ -619,6 +620,7 @@ def SameTime_Image_Open(img):
   crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   return crop_image_final
+##################################################################################################################
 
 def SameTime_Image_Close(img):
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -707,27 +709,10 @@ def SameTime_Image_Close(img):
 
   return crop_image_final
 
-##############################
-def Same_Time_Op(img):
-  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 :
-    print(OSA_Left_Eye(img))
-    print(OSA_Right_Eye(img))
-    print(EBH_Left_Eye(img))
-    print(EBH_Right_Eye(img))
-    cv2.imshow("SameTime_Image_Open", SameTime_Image_Open(img))
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()  
-  else:
-    print('0')
-    print('0')
-    print(EBH_Left_Eye(img))
-    print(EBH_Right_Eye(img))
-    cv2.imshow("SameTime_Image_Close", SameTime_Image_Close(img))
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()  
 
+##################################################################################################################
 ################################################## Diff Time #####################################################
-def DifTime_Image_1(img):
+def DifTime_Image_Open_1(img):
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -819,7 +804,9 @@ def DifTime_Image_1(img):
 
   return crop_image_final
 
-def DifTime_Image_2(img):
+##########################################################################################
+
+def DifTime_Image_Open_2(img):
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -909,41 +896,340 @@ def DifTime_Image_2(img):
 
   return crop_image_final
 
-##############################
+
+##########################################################################################
+
+def DifTime_Image_Close_1(img):
+  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+  image_ROI_to_Coordinate = img.copy()
+  temp_image, mask_left_eye = draw_ROI('left', 'eye', image_ROI_to_Coordinate)
+  contours, _ = cv2.findContours(mask_left_eye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  sorted_contour_left_eye = sorted(contours, key=cv2.contourArea, reverse=True)[0]
+
+  image_ROI_to_Coordinate = img.copy()
+  temp_image, mask_right_eye = draw_ROI('right', 'eye', image_ROI_to_Coordinate)
+  contours, _ = cv2.findContours(mask_right_eye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  sorted_contour_right_eye = sorted(contours, key=cv2.contourArea, reverse=True)[0]
+
+  left_eye_point = sorted_contour_left_eye[0][0]
+  right_eye_point = sorted_contour_right_eye[0][0]
+
+  #image_ROI_to_Coordinate_Left
+  image_ROI_to_Coordinate = img.copy()
+  left_eye_brow_bw = plot_landmark_eyebrow_bw('left', image_ROI_to_Coordinate, plot=False)
+  upper = np.array([255, 0, 0])
+  lower = upper
+  mask = cv2.inRange(left_eye_brow_bw, lower, upper)
+  temp = left_eye_point.copy()
+  while True :
+      if temp[1] == 0 :
+          break
+      if tuple(temp) in zip(list(mask.nonzero())[1], list(mask.nonzero())[0]): 
+          left_eye_brow_point = temp
+          break
+      else :
+          temp[1] = temp[1]-1
+  left_eye_brow_bw = temp
+
+  #image_ROI_to_Coordinate_Right
+  image_ROI_to_Coordinate = img.copy()
+  right_eye_brow_bw = plot_landmark_eyebrow_bw('right', image_ROI_to_Coordinate, plot=False)
+  upper = np.array([255, 0, 0])
+  lower = upper
+  mask = cv2.inRange(right_eye_brow_bw, lower, upper)
+  temp = right_eye_point.copy()
+  while True :
+      if temp[1] == 0 :
+          break
+      if tuple(temp) in zip(list(mask.nonzero())[1], list(mask.nonzero())[0]): 
+          right_eye_brow_point = temp
+          break
+      else :
+          temp[1] = temp[1]-1
+  right_eye_brow_bw = temp
+  
+  #Draw Circle & Line
+  red = [255,0,0]
+  yellow = [255,255,0]
+  img_test_color = img.copy()
+  cv2.circle(img_test_color, left_eye_point, 5, red, -1)
+  cv2.circle(img_test_color, left_eye_brow_point, 5, red, -1)
+  cv2.circle(img_test_color, right_eye_point, 5, red, -1)
+  cv2.circle(img_test_color, right_eye_brow_point, 5, red, -1)
+  cv2.line(img_test_color, left_eye_point, left_eye_brow_point, red, thickness = 2)
+  cv2.line(img_test_color, right_eye_point, right_eye_brow_point, red, thickness = 2)
+
+  #Add Text
+  image_final = img_test_color.copy()
+  #R1
+  font_right = cv2.FONT_HERSHEY_TRIPLEX #font
+  org_right = (650, 530) #org
+  fontScale_right = 0.8 #fontScale
+  color_right = (0, 0, 0)
+  thickness_right = 1
+  image_final = cv2.putText(image_final,'R1', org_right, font_right, 
+                    fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
+  #L1
+  font_left = cv2.FONT_HERSHEY_TRIPLEX #font
+  org_left = (1100, 530) #org
+  fontScale_left  = 0.8 #fontScale
+  color_left  = (0, 0, 0)
+  thickness_left  = 1
+  image_final = cv2.putText(image_final,'L1', org_left , font_left , 
+                    fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
+
+  #Crop
+  crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+
+  return crop_image_final
+
+##########################################################################################
+
+def DifTime_Image_Close_2(img):
+  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+  image_ROI_to_Coordinate = img.copy()
+  temp_image, mask_left_eye = draw_ROI('left', 'eye', image_ROI_to_Coordinate)
+  contours, _ = cv2.findContours(mask_left_eye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  sorted_contour_left_eye = sorted(contours, key=cv2.contourArea, reverse=True)[0]
+
+  image_ROI_to_Coordinate = img.copy()
+  temp_image, mask_right_eye = draw_ROI('right', 'eye', image_ROI_to_Coordinate)
+  contours, _ = cv2.findContours(mask_right_eye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+  sorted_contour_right_eye = sorted(contours, key=cv2.contourArea, reverse=True)[0]
+
+  left_eye_point = sorted_contour_left_eye[0][0]
+  right_eye_point = sorted_contour_right_eye[0][0]
+
+  #image_ROI_to_Coordinate_Left
+  image_ROI_to_Coordinate = img.copy()
+  left_eye_brow_bw = plot_landmark_eyebrow_bw('left', image_ROI_to_Coordinate, plot=False)
+  upper = np.array([255, 0, 0])
+  lower = upper
+  mask = cv2.inRange(left_eye_brow_bw, lower, upper)
+  temp = left_eye_point.copy()
+  while True :
+      if temp[1] == 0 :
+          break
+      if tuple(temp) in zip(list(mask.nonzero())[1], list(mask.nonzero())[0]): 
+          left_eye_brow_point = temp
+          break
+      else :
+          temp[1] = temp[1]-1
+  left_eye_brow_bw = temp
+
+  #image_ROI_to_Coordinate_Right
+  image_ROI_to_Coordinate = img.copy()
+  right_eye_brow_bw = plot_landmark_eyebrow_bw('right', image_ROI_to_Coordinate, plot=False)
+  upper = np.array([255, 0, 0])
+  lower = upper
+  mask = cv2.inRange(right_eye_brow_bw, lower, upper)
+  temp = right_eye_point.copy()
+  while True :
+      if temp[1] == 0 :
+          break
+      if tuple(temp) in zip(list(mask.nonzero())[1], list(mask.nonzero())[0]): 
+          right_eye_brow_point = temp
+          break
+      else :
+          temp[1] = temp[1]-1
+  right_eye_brow_bw = temp
+  
+  #Draw Circle & Line
+  red = [255,0,0]
+  yellow = [255,255,0]
+  img_test_color = img.copy()
+  cv2.circle(img_test_color, left_eye_point, 5, red, -1)
+  cv2.circle(img_test_color, left_eye_brow_point, 5, red, -1)
+  cv2.circle(img_test_color, right_eye_point, 5, red, -1)
+  cv2.circle(img_test_color, right_eye_brow_point, 5, red, -1)
+  cv2.line(img_test_color, left_eye_point, left_eye_brow_point, red, thickness = 2)
+  cv2.line(img_test_color, right_eye_point, right_eye_brow_point, red, thickness = 2)
+
+  #Add Text
+  image_final = img_test_color.copy()
+  #R1
+  font_right = cv2.FONT_HERSHEY_TRIPLEX #font
+  org_right = (650, 530) #org
+  fontScale_right = 0.8 #fontScale
+  color_right = (0, 0, 0)
+  thickness_right = 1
+  image_final = cv2.putText(image_final,'R2', org_right, font_right, 
+                    fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
+  #L1
+  font_left = cv2.FONT_HERSHEY_TRIPLEX #font
+  org_left = (1100, 530) #org
+  fontScale_left  = 0.8 #fontScale
+  color_left  = (0, 0, 0)
+  thickness_left  = 1
+  image_final = cv2.putText(image_final,'L2', org_left , font_left , 
+                    fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
+
+  #Crop
+  crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+
+  return crop_image_final
+
+##########################################################################################################
+##########################################################################################################
+
+# function กรณีเวลาเดียวกัน จะครอปแบบ full face ขนาด 800x850 px
+def Same_Time_Op(img):
+  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
+    img_same = SameTime_Image_Open(img) #ภาพครอป full face กรณีลืมตา
+  else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
+    img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
+  return ER, EL, OR, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+
+##########################################################################################
+
+# function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
+# และ Dif_Time_Op_1 ตรง 1 คือหมายถึง text ที่กำกับตาเป็น R1, L1
 def Dif_Time_Op_1(img):
-  print(OSA_Left_Eye(img))
-  print(OSA_Right_Eye(img))
-  print(EBH_Left_Eye(img))
-  print(EBH_Right_Eye(img))
-  cv2.imshow("DifTime_Image_1", (DifTime_Image_1(img)))
-  cv2.waitKey(0)
-  cv2.destroyAllWindows()  
+  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
+    img_dif = DifTime_Image_Open_1(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
+  else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
+    img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
+  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
+##########################################################################################
+# function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
+# และ Dif_Time_Op_2 ตรง 2 คือหมายถึง text ที่กำกับตาเป็น R2, L2
 def Dif_Time_Op_2(img):
-  print(OSA_Left_Eye(img))
-  print(OSA_Right_Eye(img))
-  print(EBH_Left_Eye(img))
-  print(EBH_Right_Eye(img))
-  cv2.imshow("DifTime_Image_2", (DifTime_Image_2(img)))
-  cv2.waitKey(0)
-  cv2.destroyAllWindows()  
+  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
+    img_dif = DifTime_Image_Open_2(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
+  else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
+    img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
+  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+
 ##########################################################################################################
 ##########################################################################################################
 ##########################################################################################################
+##########################################################################################################
 
-#image_path_1 = cv2.imread('/Users/baitong/Documents/test1/2C4002EB-4AF6-446A-8834-5680E33B3801-15691-000002DD21D9B1EA.jpeg')
-#image_path_2 = cv2.imread('/Users/baitong/Documents/test1/6C6BD02E-7D22-488A-A431-3C049F9CD9C8-15691-000002DD28A56769.jpeg')
+############################################ เวลาเรียกใช้งาน ###############################################
 
+# path ของภาพ อันนี้เขียนไว้ให้ดูเฉยๆ เวลา รับ 1 คู่ จะมี 2 ภาพ
+image_path_1 = cv2.imread('')
+image_path_2 = cv2.imread('')
 
-########## Alignment ##############
-#result1,result2 = result(image_path_1, image_path_2)
-
+##########################################################################################################
 ########## same time ##############
-#Same_Time_Op(result1)
-#Same_Time_Op(result2)
-#ค่า1 คือ OSA Left, ค่า2 คือ OSA Right, ค่า3 คือ EBH Left, ค่า4 คือ EBH Right
+# กรณีเวลาเดียวกัน
+# ครอปแบบ full face ขนาด 800x850 px
+# คำสั้งคือ 3 บรรทัดนี้ 
+result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+Same_Time_Op(result_align_1)
+Same_Time_Op(result_align_2)
 
+# ฮธิบายแบบละเอียด
+
+# 1.) Aligment --> จัดสัดส่วนให้ทั้ง 2 ภาพเท่ากัน 
+#     - เรียกใช้งาน : result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+#     - ชื่อของ function : align_result
+#     - input จะใส่ไป 2 ภาพ : image_path_1, image_path_2
+#     - output เป็นภาพที่ align แล้ว 2 ภาพ : result_align_1, result_align_2
+
+# 2.) Measurement --> หาค่า EBH & OSA และ ขีดเส้นที่ตา + add text (R,L) ในภาพ 
+#     - เรียกใช้งาน Same_Time_Op(result_align_1)  และ Same_Time_Op(result_align_2)
+#     - ชื่อของ function : Same_Time_Op
+#     - อันนี้ถ้าเวลาเดียวกันจะมีแค่ function นี้อันเดียวเลย *************
+#     - input :  ภาพที่ได้จาก alignent 
+#     - output : return ออกมา 4 ค่า และ 1 ภาพ
+#                --> 4 ค่า เรียงลำดับคือ EHB Right, EBH Left, OSA Right, OSA Left
+# ตรง function มีอธิบายไว้ เลื่อนขึ้นไปนิดหน่อย
+
+
+
+##########################################################################################################
 ########## Dif time ##############
-#Dif_Time_Op_1(result3)
-#Dif_Time_Op_2(result4)
+# กรณีคนละเวลา
+# ครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
+# คำสั้งคือ 3 บรรทัดนี้ 
+result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+Dif_Time_Op_1(result_align_1)
+Dif_Time_Op_2(result_align_2)
 
+# ฮธิบายแบบละเอียด
+
+# 1.) Aligment --> จัดสัดส่วนให้ทั้ง 2 ภาพเท่ากัน 
+#     - เรียกใช้งาน : result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+#     - ชื่อของ function : align_result
+#     - input จะใส่ไป 2 ภาพ : image_path_1, image_path_2
+#     - output เป็นภาพที่ align แล้ว 2 ภาพ : result_align_1, result_align_2
+
+# 2.) Measurement --> หาค่า EBH & OSA และ ขีดเส้นที่ตา + add text (R,L) ในภาพ 
+#     - เรียกใช้งาน Same_Time_Op(result_align_1)  และ Same_Time_Op(result_align_2)
+#     - ชื่อของ function : Same_Time_Op_1 และ Same_Time_Op_2
+#                        ----> Same_Time_Op_1 : text จะเป็น R1, L1
+#                        ----> Same_Time_Op_2 : text จะเป็น R2, L2
+#     - อันนี้จะมี 2 function ต่างกับเวลาเดียวกัน **********
+#     - input :  ภาพที่ได้จาก alignent 
+#     - output : return ออกมา 4 ค่า และ 1 ภาพ
+#                --> 4 ค่า เรียงลำดับคือ EHB Right, EBH Left, OSA Right, OSA Left
+# ตรง function มีอธิบายไว้ เลื่อนขึ้นไปนิดหน่อย
+
+
+##########################################################################################################
+# อธิบายชื่อ function เพิ่มเติม 
+# 1. Alignment : align_result
+
+# 2. Measurement
+#       - output ออกมาเฉพาะค่า
+#             -----> EBH
+#                        - EBH ตาขวา : EBH_Right_Eye
+#                        - EBH ตาซ้าย : EBH_Left_Eye
+#             -----> OSA
+#                        - OSA ตาขวา : OSA_Right_Eye
+#                        - OSA ตาซ้าย : OSA_Left_Eye
+#       - output ออกมาเฉพาะรูปภาพ
+#             -----> เวลาเดียวกัน (จะครอปแบบ full face ขนาด 800x850 px)
+#                        - ภาพลืมตา : SameTime_Image_Open
+#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), เส้นลากรอบดวงตา, text(R1, L1) >>
+#                        - ภาพหลับตา : SameTime_Image_Close
+#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), text(R2, L2) >>
+#             -----> คนละเวลา(จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px)
+#                        - ภาพลืมตา 
+#                              o Text R1, L1 : DifTime_Image_Open_1
+#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), เส้นลากรอบดวงตา, text(R1, L1) >>
+#                              o Text R2, L2 : DifTime_Image_Open_2
+#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), เส้นลากรอบดวงตา, text(R2, L2) >>
+#                        - ภาพหลับตา 
+#                              o Text R1, L1 : DifTime_Image_Close_1
+#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), text(R1, L1) >>
+#                              o Text R2, L2 : DifTime_Image_Close_2
+#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), text(R2, L2) >>
+#       - output ออกมาทั้งค่าและรูปภาพ 
+#             -----> เวลาเดียวกัน : Same_Time_Op 
+#                         << จะ return ออกมา 4 ค่า คือ EHB Right, EBH Left, OSA Right, OSA Left และ 1 ภาพ >>
+#             -----> คนละเวลา
+#                         - Text R1, L1 : Dif_Time_Op_1
+#                         - Text R2, L2 : Dif_Time_Op_2
+#                         << จะ return ออกมา 4 ค่า คือ EHB Right, EBH Left, OSA Right, OSA Left และ 1 ภาพ >>
