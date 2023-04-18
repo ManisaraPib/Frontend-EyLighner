@@ -18,7 +18,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
 
-from Algorithm import result, Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
+# from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
 
 # from zmq import Message
 #from flask import send_file
@@ -81,10 +81,20 @@ def upload_file():
                         status = False
                 if status == True:
                     data.append(x)
+                    file_id = x.image_id
+                    if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 12":
+                        print(x.image_id ," --> Same time" )
+                    else:
+                        print(x.image_id ," --> Diff time" )
 
         # print("filtered_strings",filtered_strings)
-        print("Filtered ",data,len(recieved_list))
+        print("Filtered :",data)
 
+
+        # while i < len(data):
+
+
+        #     i = i+1
 
         openeye_image = request.files['f0_1']
         closeeye_image = request.files['f0_2']
