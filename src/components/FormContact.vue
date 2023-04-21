@@ -5,13 +5,12 @@
             <div class="lg:py-4 px-4 mx-auto max-w-screen-fix">
                 <form action="#" class="space-y-2">
                     <div>
-                        <input type="text" placeholder="Name" v-model="form.name"
+                        <input type="text" placeholder="Topic" v-model="form.name"
                             class="text-text1 text-sm font-sans rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3"
                             required />
                     </div>
                     <div>
-                        <input type="email" placeholder="Email" v-model="form.email"
-                            :class="{ 'red-border': wrongEmail }"
+                        <input type="email" placeholder="Email" v-model="form.email" :class="{ 'red-border': wrongEmail }"
                             class="block p-3 px-52 w-full text-sm text-text1 font-sans rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
                             required>
                     </div>
@@ -93,6 +92,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
