@@ -1137,17 +1137,17 @@ def Dif_Time_Op_2(img):
 ############################################ เวลาเรียกใช้งาน ###############################################
 
 # path ของภาพ อันนี้เขียนไว้ให้ดูเฉยๆ เวลา รับ 1 คู่ จะมี 2 ภาพ
-image_path_1 = cv2.imread('')
-image_path_2 = cv2.imread('')
+#mage_path_1 = cv2.imread('')
+#image_path_2 = cv2.imread('')
 
 ##########################################################################################################
 ########## same time ##############
 # กรณีเวลาเดียวกัน
 # ครอปแบบ full face ขนาด 800x850 px
 # คำสั้งคือ 3 บรรทัดนี้ 
-result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-Same_Time_Op(result_align_1)
-Same_Time_Op(result_align_2)
+#result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+#Same_Time_Op(result_align_1)
+#Same_Time_Op(result_align_2)
 
 # ฮธิบายแบบละเอียด
 
@@ -1173,9 +1173,9 @@ Same_Time_Op(result_align_2)
 # กรณีคนละเวลา
 # ครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # คำสั้งคือ 3 บรรทัดนี้ 
-result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-Dif_Time_Op_1(result_align_1)
-Dif_Time_Op_2(result_align_2)
+#result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+#Dif_Time_Op_1(result_align_1)
+#Dif_Time_Op_2(result_align_2)
 
 # ฮธิบายแบบละเอียด
 

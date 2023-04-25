@@ -16,7 +16,8 @@ import asyncio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
-#from Eylighner_Algorithm import result, Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
+
+#from Algorithm.Eylighner_Algorithm import align_result, Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
 
 # from zmq import Message
 #from flask import send_file
@@ -25,8 +26,6 @@ from werkzeug.datastructures import ImmutableMultiDict,FileStorage
 
 # import model
 #from __(model path)__ import __(model function name)__
-
-
 
 # define image path
 path = ""
