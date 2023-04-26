@@ -17,7 +17,12 @@ import asyncio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
+<<<<<<< Updated upstream
 from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
+=======
+#from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+
+>>>>>>> Stashed changes
 # from zmq import Message
 #from flask import send_file
 #from urllib import response
@@ -53,10 +58,10 @@ def upload_file():
         # file_list = [Files(*x) for x in form_list]
         
         # for i in range (len(form_list)):
-            
 
         recieved_list = request.files.getlist('files')
-        for i in range (1,len(recieved_list)):
+        print(len(recieved_list))
+        for i in range (0,len(recieved_list)):
             fileStorage = recieved_list[i]
             print(i,fileStorage)
             file_bytes = fileStorage.read()
@@ -67,7 +72,7 @@ def upload_file():
             # convert numpy array to image
             img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
             cv.imwrite(f"Image_{i}.jpg", img)
-
+            path = f"Image_{i}.jpg"
 
         # filtered_strings = [x for x in form_list if [int(match) for match in re.findall(r"\d+",  x.content)] <= 2]
         data = []
@@ -80,20 +85,21 @@ def upload_file():
                         status = False
                 if status == True:
                     data.append(x)
+
                     file_id = x.image_id
-                    if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 12":
+                    if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 15":
                         print(x.image_id ," --> Same time" )
                     else:
                         print(x.image_id ," --> Diff time" )
 
         # print("filtered_strings",filtered_strings)
+        print("Filtered ",data,len(recieved_list))
+        print("Filtered ",data,len(recieved_list))
+
         print("Filtered :",data)
 
 
         # while i < len(data):
-
-
-        #     i = i+1
 
         openeye_image = request.files['f0_1']
         closeeye_image = request.files['f0_2']
@@ -111,10 +117,6 @@ def upload_file():
         openeye_image.save(openeye_path)
         closeeye_image.save(closeeye_path)
         print ("Save images")
-
-
-
-
 
 
 #Select Image from Folder
