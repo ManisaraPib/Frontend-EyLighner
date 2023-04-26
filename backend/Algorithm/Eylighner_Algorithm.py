@@ -1137,16 +1137,17 @@ def Dif_Time_Op_2(img):
 ############################################ เวลาเรียกใช้งาน ###############################################
 
 # path ของภาพ อันนี้เขียนไว้ให้ดูเฉยๆ เวลา รับ 1 คู่ จะมี 2 ภาพ
-#mage_path_1 = cv2.imread('')
-#image_path_2 = cv2.imread('')
+image_path_1 = cv2.imread('/Users/baitong/Documents/GitHub/Frontend-EyLighner/backend/Algorithm/2C4002EB-4AF6-446A-8834-5680E33B3801-15691-000002DD21D9B1EA.jpeg')
+image_path_2 = cv2.imread('/Users/baitong/Documents/GitHub/Frontend-EyLighner/backend/Algorithm/6C6BD02E-7D22-488A-A431-3C049F9CD9C8-15691-000002DD28A56769.jpeg')
 
 ##########################################################################################################
 ########## same time ##############
 # กรณีเวลาเดียวกัน
 # ครอปแบบ full face ขนาด 800x850 px
 # คำสั้งคือ 3 บรรทัดนี้ 
-#result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-#Same_Time_Op(result_align_1)
+result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+A,B,C,D,E = Same_Time_Op(result_align_1)
+print(A,B,C,D)
 #Same_Time_Op(result_align_2)
 
 # ฮธิบายแบบละเอียด
