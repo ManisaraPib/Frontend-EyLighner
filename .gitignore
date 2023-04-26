@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 venv
 uploads
+backend/__pycache__/models.cpython-39.pyc
+backend/Algorithm/__pycache__/Eylighner_Algorithm.cpython-39.pyc
