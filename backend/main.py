@@ -17,12 +17,9 @@ import asyncio
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
-<<<<<<< Updated upstream
-from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
-=======
-#from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
 
->>>>>>> Stashed changes
+
 # from zmq import Message
 #from flask import send_file
 #from urllib import response
@@ -133,7 +130,31 @@ def upload_file():
 #         image_path = os.path.join(app.config['UPLOAD_FOLDER'], f"{file_name}.jpg")
 #         print(image_path)
 
+# pass image file result to URL
+import requests
+@app.route('/image_url', methods=['GET'])
+def image_url():
+    try:
+        f = open('c:/tensorflow1/temp.jpg','wb')
+        image_url = request.args['image_url']  # get the image URL
+        f.write(requests.get(image_url).content)
+        f.close()
+        # Set an image confidence threshold value to limit returned data
+        threshold = request.form.get('threshold')
+        if threshold is None:
+            threshold = 0.5
+        else:
+            threshold = float(threshold)
 
+        # finally run the image through tensor flow object detection`
+        image_object = Image.open('c:/tensorflow1/temp.jpg')
+        objects = od_ws_api.get_objects(image_object, threshold)
+        return objects
+
+    except Exception as e:
+        print(e)
+        return 'error'
+        
 #Contact Page
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
