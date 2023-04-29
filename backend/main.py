@@ -18,6 +18,7 @@ from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
 
 #from Algorithm.Eylighner_Algorithm import align_result, Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
+from Algorithm.caller import align_result, Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2
 
 # from zmq import Message
 #from flask import send_file
