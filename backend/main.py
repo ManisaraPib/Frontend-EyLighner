@@ -1,10 +1,11 @@
 #Server Side
 from pyexpat import model
-from flask import Flask
+from flask import Flask,send_file
 from flask_restful import Api,Resource,abort
 from flask import Flask, request,jsonify,json
 from flask_cors import CORS, cross_origin
 import pathlib
+import socket
 import numpy
 import cv2 as cv
 from models import Files
@@ -14,10 +15,11 @@ import smtplib
 import os
 import re
 import asyncio
+import cv2
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
-from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+# from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
 
 
 # from zmq import Message
@@ -43,77 +45,129 @@ CORS(app)
 CORS(app, resources={r'/*': {'origins': '*'}},CORS_SUPPORTS_CREDENTIALS = True)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+def get_ip():
+    host = request.host.split(':')[0]  # extract the hostname from request.host
+    ip = socket.gethostbyname(host)    # get the IP address using socket.gethostbyname()
+    return ip
+
+
 #Upload 
 @app.route('/upload_files', methods=['GET', 'POST'])
 def upload_file():
+
+    data = []
+    data_name = []
+    model_result = {}
+    ip = get_ip()
     # Get post method from frontend
     if request.method == 'POST':
         print("uploading...")
-        print(list(request.form.items()))
         form_list = [Files(*item) for item in list(request.form.items())]
-        # print(type(form_list))
-        # file_list = [Files(*x) for x in form_list]
-        
-        # for i in range (len(form_list)):
-
         recieved_list = request.files.getlist('files')
-        print(len(recieved_list))
         for i in range (0,len(recieved_list)):
             fileStorage = recieved_list[i]
-            print(i,fileStorage)
             file_bytes = fileStorage.read()
-            # print(file_bytes)
 
             #convert string data to numpy array
             file_bytes = numpy.frombuffer(file_bytes, numpy.uint8)
             # convert numpy array to image
             img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
-            cv.imwrite(f"Image_{i}.jpg", img)
-            path = f"Image_{i}.jpg"
-
-        # filtered_strings = [x for x in form_list if [int(match) for match in re.findall(r"\d+",  x.content)] <= 2]
-        data = []
+            path = f"files {i+1}.jpg"
+            cv.imwrite(path, img)
+        
         for x in form_list:
+            if 'type' in x.image_id:
+                data_name.append(x)
             if 'files' in x.image_id :
                 num = re.findall(r'\d+', x.content)
                 status = True
+                print(num)
                 for i in num:
+                    print(i)
                     if int(i) > len(recieved_list):
                         status = False
                 if status == True:
                     data.append(x)
 
-                    file_id = x.image_id
-                    if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 15":
-                        print(x.image_id ," --> Same time" )
-                    else:
-                        print(x.image_id ," --> Diff time" )
+        print("data:",data)
+        print("form list:",form_list)
+        print("name: ", data_name)
 
-        # print("filtered_strings",filtered_strings)
-        print("Filtered ",data,len(recieved_list))
-        print("Filtered ",data,len(recieved_list))
+        for element in data:
+            if element.content != 'None' and element.content != 'null':
+                file_id = element.image_id
+                if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 15":
 
-        print("Filtered :",data)
+                    num = element.content.split(", ")
+                    num = [int(x) for x in num]
+                    image_path_1 = f"file {str(num[0])}.jpg"
+                    image_path_2 = f"file {str(num[1])}.jpg"
+
+                    print("Same time op ==> ",image_path_1,image_path_2)
+                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    # result_imagePath1 = Same_Time_Op(result_align_1)
+                    # result_imagePath2 = Same_Time_Op(result_align_2)
+                                        
+                    # model_result['0'] = {
+                    #     'url1' : f"{ip}/image/{result_imagePath1}",
+                    #     'url2' : f"{ip}/image/{result_imagePath2}",
+                    #     '0' : f"{result_0}",
+                    #     '1' : f"{result_0}",
+                    #     'name' : ""
+                    # }
 
 
-        # while i < len(data):
+                else:
+                    num = element.content.split(", ")
+                    num = [int(x) for x in num]
+                    image_path_1 = f"file {str(num[0])}.jpg"
+                    image_path_2 = f"file {str(num[1])}.jpg"
+                    print("Diff time op ==> ",image_path_1,image_path_2)
 
-        openeye_image = request.files['f0_1']
-        closeeye_image = request.files['f0_2']
+                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+
+                    # Same_Time_Op(result_align_1)
+                    # Same_Time_Op(result_align_2)
+
+                print(get_ip())
+    model_result['0'] = {
+                'url1' : f"{ip}/image/files 1.jpg",
+                'url2' : f"{ip}/image/files 2.jpg",
+                '0' : f"ssss",
+                '1' : f"ssss",
+                'name' : "ssss"
+                }
+# {0:{"url":"image_url",status,name}
+#  1:{"url":"image_url",status,name},}
+
+    return model_result
+
+@app.route('/image/<imagePath>')
+def get_image2(imagePath:str):
+    # # Read the second image using cv2.imread()
+    image = cv2.imread(f'{imagePath}')
+    print("imageName", imagePath)
+    cv2.imwrite('./test.jpg', image)
+
+    # Convert the image to bytes
+    _, buffer2 = cv2.imencode('.jpg', image)
+    image_bytes2 = buffer2.tobytes()
+
+    # Return the image bytes along with the appropriate MIME type
+    return send_file(
+        io.BytesIO(image_bytes2),
+        mimetype='image/jpeg'
+    )
+    # Open the image file and read its contents as binary data
+    # with open(f'{imagePath}', 'rb') as f:
+    #     image_data = f.read()
         
-        # Check if file not exist
-        if 'open_image' not in request.files:
-            return 'open_image is not exist'
-        if 'close_image' not in request.files:
-            return 'close_image is not exist'
 
-
-        # Save file to givened directoery
-        openeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "open_eye.jpg")
-        closeeye_path = os.path.join(app.config['UPLOAD_FOLDER'], "close_eye.jpg")
-        openeye_image.save(openeye_path)
-        closeeye_image.save(closeeye_path)
-        print ("Save images")
+    # # Return the image data along with the appropriate MIME type
+    # return send_file(
+    #     io.BytesIO(image_data),
+    #     mimetype='image/jpeg'
+    # )
 
 
 #Select Image from Folder
