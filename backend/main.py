@@ -19,7 +19,7 @@ import cv2
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
-# from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+#from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
 
 
 # from zmq import Message
@@ -107,15 +107,16 @@ def upload_file():
                     # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
                     # result_imagePath1 = Same_Time_Op(result_align_1)
                     # result_imagePath2 = Same_Time_Op(result_align_2)
+                    # result_0 = "test"
+                    # result_1 = "test"
                                         
                     # model_result['0'] = {
                     #     'url1' : f"{ip}/image/{result_imagePath1}",
                     #     'url2' : f"{ip}/image/{result_imagePath2}",
                     #     '0' : f"{result_0}",
-                    #     '1' : f"{result_0}",
+                    #     '1' : f"{result_1}",
                     #     'name' : ""
                     # }
-
 
                 else:
                     num = element.content.split(", ")
