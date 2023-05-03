@@ -125,10 +125,10 @@ Dif_Time_Op_2(result_align_2) #--> A,B = Dif_Time_Op_2(result_align_2) :ผล�
 #     - output เป็นภาพที่ align แล้ว 2 ภาพ : result_align_1, result_align_2
 
 # 2.) Measurement --> หาค่า EBH & OSA และ ขีดเส้นที่ตา + add text (R,L) ในภาพ 
-#     - เรียกใช้งาน Same_Time_Op(result_align_1)  และ Same_Time_Op(result_align_2)
-#     - ชื่อของ function : Same_Time_Op_1 และ Same_Time_Op_2
-#                        ----> Same_Time_Op_1 : text จะเป็น R1, L1
-#                        ----> Same_Time_Op_2 : text จะเป็น R2, L2
+#     - เรียกใช้งาน Dif_Time_Op_1(result_align_1)  และ Dif_Time_Op_2(result_align_2)
+#     - ชื่อของ function : Dif_Time_Op_1 และ Dif_Time_Op_2
+#                        ----> Dif_Time_Op_1 : text จะเป็น R1, L1
+#                        ----> Dif_Time_Op_2 : text จะเป็น R2, L2
 #     - อันนี้จะมี 2 function ต่างกับเวลาเดียวกัน **********
 #     - input :  ภาพที่ได้จาก alignent 
 #     - output : return ออกมา 4 ค่า และ 1 ภาพ ตามลำดับ
@@ -172,3 +172,28 @@ Dif_Time_Op_2(result_align_2) #--> A,B = Dif_Time_Op_2(result_align_2) :ผล�
 #                         - Text R1, L1 : Dif_Time_Op_1
 #                         - Text R2, L2 : Dif_Time_Op_2
 #                         << จะ return ออกมา 4 ค่า คือ EHB Right, EBH Left, OSA Right, OSA Left และ 1 ภาพ >>
+
+
+RAM ที่ใช้ 1.3 GB
+
+
+files 2 : 1 = Dif_Time_Op_1
+          3 = Dif_Time_Op_2
+files 4 : 1 = Dif_Time_Op_1
+          5 = Dif_Time_Op_2
+files 5 : 3 = Dif_Time_Op_1
+          5 = Dif_Time_Op_2
+files 7 : 1 = Dif_Time_Op_1
+          7 = Dif_Time_Op_2
+files 8 : 3 = Dif_Time_Op_1
+          7 = Dif_Time_Op_2
+files 9 : 5 = Dif_Time_Op_1
+          7 = Dif_Time_Op_2
+files 11 :  1 = Dif_Time_Op_1
+            9 = Dif_Time_Op_2
+files 12 :  3 = Dif_Time_Op_1
+            9 = Dif_Time_Op_2
+files 13 :  5 = Dif_Time_Op_1
+            9 = Dif_Time_Op_2
+files 14 :  7 = Dif_Time_Op_1
+            9 = Dif_Time_Op_2
