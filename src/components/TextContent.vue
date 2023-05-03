@@ -6510,7 +6510,7 @@ export default {
             const printCanvas = await html2canvas(el, options);
 
             const link = document.createElement("a");
-            link.setAttribute("download", "download.png");
+            link.setAttribute("download", "result.png");
             link.setAttribute(
                 "href",
                 printCanvas
@@ -6567,7 +6567,7 @@ export default {
             const printCanvas = await html2canvas(el, options);
 
             const link = document.createElement("a");
-            link.setAttribute("download", "download.png");
+            link.setAttribute("download", "result.png");
             link.setAttribute(
                 "href",
                 printCanvas
