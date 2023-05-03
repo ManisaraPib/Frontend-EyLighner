@@ -1074,4 +1074,18 @@ def DifTime_Image_Close_2(img):
   return crop_image_final
 
 ##########################################################################################################
+def ms1(img): #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
+    return ER, EL, OR, OL
+
+def ms2(img): #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
+    return ER, EL, OR, OL
+
 ##########################################################################################################
