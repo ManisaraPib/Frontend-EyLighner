@@ -105,10 +105,9 @@ def upload_file():
 
                     print("Same time op ==> ",image_path_1,image_path_2)
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    result_imagePath1 = Same_Time_Op(result_align_1)
-                    result_imagePath2 = Same_Time_Op(result_align_2)
-                    result_0 = "test"
-                    result_1 = "test"
+                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                   
                                         
                     model_result['0'] = {
                         'url1' : f"{ip}/image/{result_imagePath1}",
@@ -128,16 +127,16 @@ def upload_file():
 
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
 
-                    Same_Time_Op(result_align_1)
-                    Same_Time_Op(result_align_2)
+                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
 
                     model_result['1'] = {
-                                'url1' : f"{ip}/image/files 1.jpg",
-                                'url2' : f"{ip}/image/files 2.jpg",
-                                '0' : f"ssss",
-                                '1' : f"ssss",
-                                'name' : "ssss"
-                                }
+                        'url1' : f"{ip}/image/{result_imagePath1}",
+                        'url2' : f"{ip}/image/{result_imagePath2}",
+                        '0' : f"{result_0}",
+                        '1' : f"{result_1}",
+                        'name' : ""
+                    }
                     
                     print(model_result)
 
