@@ -19,7 +19,7 @@ import cv2
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
-#from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
 
 
 # from zmq import Message
@@ -104,19 +104,19 @@ def upload_file():
                     image_path_2 = f"file {str(num[1])}.jpg"
 
                     print("Same time op ==> ",image_path_1,image_path_2)
-                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    # result_imagePath1 = Same_Time_Op(result_align_1)
-                    # result_imagePath2 = Same_Time_Op(result_align_2)
-                    # result_0 = "test"
-                    # result_1 = "test"
+                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_imagePath1 = Same_Time_Op(result_align_1)
+                    result_imagePath2 = Same_Time_Op(result_align_2)
+                    result_0 = "test"
+                    result_1 = "test"
                                         
-                    # model_result['0'] = {
-                    #     'url1' : f"{ip}/image/{result_imagePath1}",
-                    #     'url2' : f"{ip}/image/{result_imagePath2}",
-                    #     '0' : f"{result_0}",
-                    #     '1' : f"{result_1}",
-                    #     'name' : ""
-                    # }
+                    model_result['0'] = {
+                        'url1' : f"{ip}/image/{result_imagePath1}",
+                        'url2' : f"{ip}/image/{result_imagePath2}",
+                        '0' : f"{result_0}",
+                        '1' : f"{result_1}",
+                        'name' : ""
+                    }
 
                 else:
                     num = element.content.split(", ")
@@ -125,10 +125,10 @@ def upload_file():
                     image_path_2 = f"file {str(num[1])}.jpg"
                     print("Diff time op ==> ",image_path_1,image_path_2)
 
-                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
 
-                    # Same_Time_Op(result_align_1)
-                    # Same_Time_Op(result_align_2)
+                    Same_Time_Op(result_align_1)
+                    Same_Time_Op(result_align_2)
 
                 print(get_ip())
     model_result['0'] = {
@@ -209,6 +209,27 @@ def get_image2(imagePath:str):
 #     except Exception as e:
 #         print(e)
 #         return 'error'
+
+# files 2 : 1 = Dif_Time_Op_1
+#           3 = Dif_Time_Op_2
+# files 4 : 1 = Dif_Time_Op_1
+#           5 = Dif_Time_Op_2
+# files 5 : 3 = Dif_Time_Op_1
+#           5 = Dif_Time_Op_2
+# files 7 : 1 = Dif_Time_Op_1
+#           7 = Dif_Time_Op_2
+# files 8 : 3 = Dif_Time_Op_1
+#           7 = Dif_Time_Op_2
+# files 9 : 5 = Dif_Time_Op_1
+#           7 = Dif_Time_Op_2
+# files 11 :  1 = Dif_Time_Op_1
+#             9 = Dif_Time_Op_2
+# files 12 :  3 = Dif_Time_Op_1
+#             9 = Dif_Time_Op_2
+# files 13 :  5 = Dif_Time_Op_1
+#             9 = Dif_Time_Op_2
+# files 14 :  7 = Dif_Time_Op_1
+#             9 = Dif_Time_Op_2
         
 #Contact Page
 @app.route('/contact', methods=['GET', 'POST'])
