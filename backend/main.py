@@ -19,7 +19,7 @@ import cv2
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
-from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+# from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
 
 
 # from zmq import Message
@@ -137,37 +137,17 @@ def upload_file():
                         '1' : f"{result_1}",
                         'name' : ""
                     }
-                    
                     print(model_result)
-
     return model_result
 
-@app.route('/image/<imagePath>')
+
+@app.route('/image/<imagePath>/')
 def get_image2(imagePath:str):
-    # # Read the second image using cv2.imread()
-    image = cv2.imread(f'{imagePath}')
-    print("imageName", imagePath)
-    cv2.imwrite('./test.jpg', image)
-
-    # Convert the image to bytes
-    _, buffer2 = cv2.imencode('.jpg', image)
-    image_bytes2 = buffer2.tobytes()
-
-    # Return the image bytes along with the appropriate MIME type
-    return send_file(
-        io.BytesIO(image_bytes2),
-        mimetype='image/jpeg'
-    )
-    # Open the image file and read its contents as binary data
-    # with open(f'{imagePath}', 'rb') as f:
-    #     image_data = f.read()
-        
-
-    # # Return the image data along with the appropriate MIME type
-    # return send_file(
-    #     io.BytesIO(image_data),
-    #     mimetype='image/jpeg'
-    # )
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(dir_path,imagePath)
+    mime_type = 'image/jpeg'
+    print("DEBUG| Get image : ",path)
+    return send_file(path, mimetype=mime_type)
 
 
 #Select Image from Folder
