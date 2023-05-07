@@ -117,6 +117,7 @@ def upload_file():
                         '1' : f"{result_1}",
                         'name' : ""
                     }
+                    print(model_result)
 
                 else:
                     num = element.content.split(", ")
@@ -130,16 +131,15 @@ def upload_file():
                     Same_Time_Op(result_align_1)
                     Same_Time_Op(result_align_2)
 
-                print(get_ip())
-    model_result['0'] = {
-                'url1' : f"{ip}/image/files 1.jpg",
-                'url2' : f"{ip}/image/files 2.jpg",
-                '0' : f"ssss",
-                '1' : f"ssss",
-                'name' : "ssss"
-                }
-# {0:{"url":"image_url",status,name}
-#  1:{"url":"image_url",status,name},}
+                    model_result['1'] = {
+                                'url1' : f"{ip}/image/files 1.jpg",
+                                'url2' : f"{ip}/image/files 2.jpg",
+                                '0' : f"ssss",
+                                '1' : f"ssss",
+                                'name' : "ssss"
+                                }
+                    
+                    print(model_result)
 
     return model_result
 
