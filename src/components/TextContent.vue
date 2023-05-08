@@ -12,7 +12,8 @@
                         EyLighner project uses image processing to create an algorithm, the composition<br> is aligned
                         and measures automatically the distance of the ability to open the eyes.
                     </div>
-                    <a class="flex justify-left py-2" href="https://pubmed.ncbi.nlm.nih.gov/34581296/" target="_blank">
+                    <a class="flex justify-left py-2"
+                        href="https://www.youtube.com/watch?v=ha3UELkIuvI&ab_channel=ManisaraPiboon" target="_blank">
                         <button
                             class="inline-flex items-center text-white bg-btn2 border-lg py-2 px-6 focus:outline-none hover:bg-btn22 rounded-lg text-lg">Tutorial
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
