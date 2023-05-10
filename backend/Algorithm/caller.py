@@ -4,32 +4,44 @@ from shapely.geometry import Polygon, Point
 import numpy as np
 from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
-from Algorithm.Eylighner_Algorithm import align_result, ms1, ms2, OSA_Left_Eye, OSA_Right_Eye,EBH_Right_Eye, EBH_Left_Eye, SameTime_Image_Open, SameTime_Image_Close, DifTime_Image_Open_1, DifTime_Image_Close_1, DifTime_Image_Open_2, DifTime_Image_Close_2
+from Algorithm.Eylighner_Algorithm import align_result, OSA_Left_Eye, OSA_Right_Eye,EBH_Right_Eye, EBH_Left_Eye, SameTime_Image_Open, SameTime_Image_Close, DifTime_Image_Open_1, DifTime_Image_Close_1, DifTime_Image_Open_2, DifTime_Image_Close_2
 
 
 ##########################################################################################
 # function กรณีเวลาเดียวกัน จะครอปแบบ full face ขนาด 800x850 px
 def Same_Time_Op(img):
-  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
-    ms = ms1(img)
-    img_dif = SameTime_Image_Open(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
+  if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
+    img_same = SameTime_Image_Open(img) #ภาพครอป full face กรณีลืมตา
   else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
-    ms = ms2(img)
-    img_dif = SameTime_Image_Close(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ms, img_dif
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
+    img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
+  return ER, EL, OR, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 
 ##########################################################################################
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # และ Dif_Time_Op_1 ตรง 1 คือหมายถึง text ที่กำกับตาเป็น R1, L1
 def Dif_Time_Op_1(img):
-  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
-    ms = ms1(img)
+  if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Open_1(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
   else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
-    ms = ms2(img)
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ms, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 ##########################################################################################
@@ -37,14 +49,19 @@ def Dif_Time_Op_1(img):
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # และ Dif_Time_Op_2 ตรง 2 คือหมายถึง text ที่กำกับตาเป็น R2, L2
 def Dif_Time_Op_2(img):
-  if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
-    ms = ms1(img)
+  if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Open_2(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
   else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
-    ms = ms2(img)
+    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
+    OR = 0 #ค่า OSA ตาขวา
+    OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ms, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
-
+  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################################
 ##########################################################################################################

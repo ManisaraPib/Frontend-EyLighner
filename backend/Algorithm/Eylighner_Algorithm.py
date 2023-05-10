@@ -55,8 +55,8 @@ def get_landmarks(image):
     return points
 
 def automatic_brightness_and_contrast(image, clip_hist_percent=1):
-    new_size = (1800, 1200) 
-    image = cv2.resize(image, new_size)
+    #new_size = (1800, 1200) 
+    #image = cv2.resize(image, new_size)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     
@@ -131,6 +131,8 @@ def align_result(image1, image2):
 
 faceModule = mp.solutions.face_mesh
 face_mesh = faceModule.FaceMesh(static_image_mode=True)
+mp_face_detection = mp.solutions.face_detection
+face_detector =  mp_face_detection.FaceDetection(min_detection_confidence = 0.6)
 
 def plot_landmark_oval(img):
     results = face_mesh.process(img)
@@ -527,10 +529,27 @@ def EBH_Right_Eye(img):
 ##################################################################################################################
 ##################################################################################################################
 ################################################## Image #########################################################
+def crop_img(img):
+  image = img.copy()
+  results = face_detector.process(image)
+  if results.detections:
+    for face in results.detections:
+        confidence = face.score
+        bounding_box = face.location_data.relative_bounding_box
+         
+        x = int(bounding_box.xmin * image.shape[1])
+        w = int(bounding_box.width * image.shape[1])
+        y = int(bounding_box.ymin * image.shape[0])
+        h = int(bounding_box.height * image.shape[0])
+         
+        crop = cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), thickness = 2)
+        crop = image[y:y + h, x:x + w]
+  return crop
 
 ################################################## Same Time #####################################################
 
 def SameTime_Image_Open(img):
+  img = img.copy()
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -597,32 +616,46 @@ def SameTime_Image_Open(img):
   image_final = plot_landmark_eye('left', image_final)
   image_final = plot_landmark_eye('right', image_final)
 
+  #Crop
+  crop_image_final = crop_img(image_final)
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  new_size = (800, 850)
+  crop_image_final = cv2.resize(crop_image_final, new_size) 
+
   #Add Text
   #R1
   font_right = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_right = (650, 530) #org
+  org_right = (120, 150) #org
   fontScale_right = 0.8 #fontScale
   color_right = (0, 0, 0)
   thickness_right = 1
-  image_final = cv2.putText(image_final,'R1', org_right, font_right, 
+  crop_image_final = cv2.putText(crop_image_final ,'R1', org_right, font_right, 
                     fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
   #L1
   font_left = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_left = (1100, 530) #org
+  org_left = (600, 150) #org
   fontScale_left  = 0.8 #fontScale
   color_left  = (0, 0, 0)
   thickness_left  = 1
-  image_final = cv2.putText(image_final,'L1', org_left , font_left , 
+  crop_image_final  = cv2.putText(crop_image_final ,'L1', org_left , font_left , 
                     fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
 
   #Crop
-  crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
-  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  
+  #image_final2 = image_final.copy()
+  #new_size = (800, 850) 
+  #crop_image_final = crop_img(image_final)
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = cv2.resize(crop_image_final, new_size)
+
 
   return crop_image_final
 ##################################################################################################################
 
 def SameTime_Image_Close(img):
+  img = img.copy()
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -683,29 +716,34 @@ def SameTime_Image_Close(img):
   cv2.line(img_test_color, left_eye_point, left_eye_brow_point, red, thickness = 2)
   cv2.line(img_test_color, right_eye_point, right_eye_brow_point, red, thickness = 2)
 
+  #Crop
+  crop_image_final = crop_img(img_test_color)
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  new_size = (800, 850)
+  crop_image_final = cv2.resize(crop_image_final, new_size) 
  
   #Add Text
-  image_final = img_test_color.copy()
-  #R1
+  #image_final = img_test_color.copy()
+  #R2
   font_right = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_right = (650, 530) #org
+  org_right = (120, 150) #org
   fontScale_right = 0.8 #fontScale
   color_right = (0, 0, 0)
   thickness_right = 1
-  image_final = cv2.putText(image_final,'R2', org_right, font_right, 
+  crop_image_final = cv2.putText(crop_image_final,'R2', org_right, font_right, 
                     fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
-  #L1
+  #L2
   font_left = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_left = (1100, 530) #org
+  org_left = (600, 150) #org
   fontScale_left  = 0.8 #fontScale
   color_left  = (0, 0, 0)
   thickness_left  = 1
-  image_final = cv2.putText(image_final,'L2', org_left , font_left , 
+  crop_image_final = cv2.putText(crop_image_final,'L2', org_left , font_left , 
                     fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
 
   #Crop
-  crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
-  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   return crop_image_final
 
@@ -713,6 +751,7 @@ def SameTime_Image_Close(img):
 ##################################################################################################################
 ################################################## Diff Time #####################################################
 def DifTime_Image_Open_1(img):
+  img = img.copy()
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -778,27 +817,54 @@ def DifTime_Image_Open_1(img):
   image_final = plot_landmark_eye('left', image_final)
   image_final = plot_landmark_eye('right', image_final)
 
+  #crop
+  start, end = plot_landmark_oval(image_final)
+  concat_start_end = start+end
+  # min_x, max_x, min_y, max_y = [], [], [], []
+  x_coordinate = []
+  y_coordinate = []
+
+  for value_x, value_y in concat_start_end :
+      x_coordinate.append(int(value_x))
+      y_coordinate.append(int(value_y))
+
+  # min_x, max_x = min(x_coordinate), max(x_coordinate)
+  min_x, max_x = 0, image_final.shape[1]
+  min_y, max_y = min(y_coordinate), max(y_coordinate)
+  # print(min_x, max_x)
+  # print(min_y, max_y)
+
+  # [y:y+h, x:x+w]
+  w=250
+  crop_image_final = image_final[min_y:int((min_y+max_y)/2), min_x+w:max_x-w]
+  #w=200
+  #crop_image_final = crop_image_final[min_y:max_y, min_x+w:max_x-w]
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  new_size = (1000, 400) 
+  crop_image_final = cv2.resize(crop_image_final, new_size)
+  #plt.imshow(crop_image_final)
+
   #Add Text
   #R1
   font_right = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_right = (650, 530) #org
+  org_right = (300, 230) #org
   fontScale_right = 0.8 #fontScale
   color_right = (0, 0, 0)
   thickness_right = 1
-  image_final = cv2.putText(image_final,'R1', org_right, font_right, 
+  crop_image_final = cv2.putText(crop_image_final,'R1', org_right, font_right, 
                     fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
   #L1
   font_left = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_left = (1100, 530) #org
+  org_left = (650, 230) #org
   fontScale_left  = 0.8 #fontScale
   color_left  = (0, 0, 0)
   thickness_left  = 1
-  image_final = cv2.putText(image_final,'L1', org_left , font_left , 
+  crop_image_final = cv2.putText(crop_image_final,'L1', org_left , font_left , 
                     fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
 
   #Crop
-  crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
-  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   #plt.imshow(crop_image_final)
 
@@ -807,6 +873,7 @@ def DifTime_Image_Open_1(img):
 ##########################################################################################
 
 def DifTime_Image_Open_2(img):
+  img = img.copy()
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -872,27 +939,54 @@ def DifTime_Image_Open_2(img):
   image_final = plot_landmark_eye('left', image_final)
   image_final = plot_landmark_eye('right', image_final)
 
+  #crop
+  start, end = plot_landmark_oval(image_final)
+  concat_start_end = start+end
+  # min_x, max_x, min_y, max_y = [], [], [], []
+  x_coordinate = []
+  y_coordinate = []
+
+  for value_x, value_y in concat_start_end :
+      x_coordinate.append(int(value_x))
+      y_coordinate.append(int(value_y))
+
+  # min_x, max_x = min(x_coordinate), max(x_coordinate)
+  min_x, max_x = 0, image_final.shape[1]
+  min_y, max_y = min(y_coordinate), max(y_coordinate)
+  # print(min_x, max_x)
+  # print(min_y, max_y)
+
+  # [y:y+h, x:x+w]
+  w=250
+  crop_image_final = image_final[min_y:int((min_y+max_y)/2), min_x+w:max_x-w]
+  #w=200
+  #crop_image_final = crop_image_final[min_y:max_y, min_x+w:max_x-w]
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  new_size = (1000, 400) 
+  crop_image_final = cv2.resize(crop_image_final, new_size)
+  #plt.imshow(crop_image_final)
+
   #Add Text
-  #R1
+  #R2
   font_right = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_right = (650, 530) #org
+  org_right = (300, 230) #org
   fontScale_right = 0.8 #fontScale
   color_right = (0, 0, 0)
   thickness_right = 1
-  image_final = cv2.putText(image_final,'R2', org_right, font_right, 
+  crop_image_final = cv2.putText(crop_image_final,'R2', org_right, font_right, 
                     fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
-  #L1
+  #L2
   font_left = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_left = (1100, 530) #org
+  org_left = (650, 230) #org
   fontScale_left  = 0.8 #fontScale
   color_left  = (0, 0, 0)
   thickness_left  = 1
-  image_final = cv2.putText(image_final,'L2', org_left , font_left , 
+  crop_image_final = cv2.putText(crop_image_final,'L2', org_left , font_left , 
                     fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
 
   #Crop
-  crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
-  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   return crop_image_final
 
@@ -900,6 +994,7 @@ def DifTime_Image_Open_2(img):
 ##########################################################################################
 
 def DifTime_Image_Close_1(img):
+  img = img.copy()
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -960,34 +1055,63 @@ def DifTime_Image_Close_1(img):
   cv2.line(img_test_color, left_eye_point, left_eye_brow_point, red, thickness = 2)
   cv2.line(img_test_color, right_eye_point, right_eye_brow_point, red, thickness = 2)
 
-  #Add Text
+  #crop
   image_final = img_test_color.copy()
+  start, end = plot_landmark_oval(image_final)
+  concat_start_end = start+end
+  # min_x, max_x, min_y, max_y = [], [], [], []
+  x_coordinate = []
+  y_coordinate = []
+
+  for value_x, value_y in concat_start_end :
+      x_coordinate.append(int(value_x))
+      y_coordinate.append(int(value_y))
+
+  # min_x, max_x = min(x_coordinate), max(x_coordinate)
+  min_x, max_x = 0, image_final.shape[1]
+  min_y, max_y = min(y_coordinate), max(y_coordinate)
+  # print(min_x, max_x)
+  # print(min_y, max_y)
+
+  # [y:y+h, x:x+w]
+  w=250
+  crop_image_final = image_final[min_y:int((min_y+max_y)/2), min_x+w:max_x-w]
+  #w=200
+  #crop_image_final = crop_image_final[min_y:max_y, min_x+w:max_x-w]
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  new_size = (1000, 400) 
+  crop_image_final = cv2.resize(crop_image_final, new_size)
+  #plt.imshow(crop_image_final)
+
+  #Add Text
+  #image_final = img_test_color.copy()
   #R1
   font_right = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_right = (650, 530) #org
+  org_right = (300, 230) #org
   fontScale_right = 0.8 #fontScale
   color_right = (0, 0, 0)
   thickness_right = 1
-  image_final = cv2.putText(image_final,'R1', org_right, font_right, 
+  crop_image_final = cv2.putText(crop_image_final,'R1', org_right, font_right, 
                     fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
   #L1
   font_left = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_left = (1100, 530) #org
+  org_left = (650, 230) #org
   fontScale_left  = 0.8 #fontScale
   color_left  = (0, 0, 0)
   thickness_left  = 1
-  image_final = cv2.putText(image_final,'L1', org_left , font_left , 
+  crop_image_final = cv2.putText(crop_image_final,'L1', org_left , font_left , 
                     fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
 
   #Crop
-  crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
-  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   return crop_image_final
 
 ##########################################################################################
 
 def DifTime_Image_Close_2(img):
+  img = img.copy()
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
   image_ROI_to_Coordinate = img.copy()
@@ -1048,44 +1172,58 @@ def DifTime_Image_Close_2(img):
   cv2.line(img_test_color, left_eye_point, left_eye_brow_point, red, thickness = 2)
   cv2.line(img_test_color, right_eye_point, right_eye_brow_point, red, thickness = 2)
 
-  #Add Text
+  #crop
   image_final = img_test_color.copy()
-  #R1
+  image_final = img_test_color.copy()
+  start, end = plot_landmark_oval(image_final)
+  concat_start_end = start+end
+  # min_x, max_x, min_y, max_y = [], [], [], []
+  x_coordinate = []
+  y_coordinate = []
+
+  for value_x, value_y in concat_start_end :
+      x_coordinate.append(int(value_x))
+      y_coordinate.append(int(value_y))
+
+  # min_x, max_x = min(x_coordinate), max(x_coordinate)
+  min_x, max_x = 0, image_final.shape[1]
+  min_y, max_y = min(y_coordinate), max(y_coordinate)
+  # print(min_x, max_x)
+  # print(min_y, max_y)
+
+  # [y:y+h, x:x+w]
+  w=250
+  crop_image_final = image_final[min_y:int((min_y+max_y)/2), min_x+w:max_x-w]
+  #w=200
+  #crop_image_final = crop_image_final[min_y:max_y, min_x+w:max_x-w]
+  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  new_size = (1000, 400) 
+  crop_image_final = cv2.resize(crop_image_final, new_size)
+  #plt.imshow(crop_image_final)
+
+  #Add Text
+  #R2
   font_right = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_right = (650, 530) #org
+  org_right = (300, 230) #org
   fontScale_right = 0.8 #fontScale
   color_right = (0, 0, 0)
   thickness_right = 1
-  image_final = cv2.putText(image_final,'R2', org_right, font_right, 
+  crop_image_final = cv2.putText(crop_image_final,'R2', org_right, font_right, 
                     fontScale_right, color_right, thickness_right, cv2.LINE_AA)  # Using cv2.putText() method
-  #L1
+  #L2
   font_left = cv2.FONT_HERSHEY_TRIPLEX #font
-  org_left = (1100, 530) #org
+  org_left = (650, 230) #org
   fontScale_left  = 0.8 #fontScale
   color_left  = (0, 0, 0)
   thickness_left  = 1
-  image_final = cv2.putText(image_final,'L2', org_left , font_left , 
+  crop_image_final = cv2.putText(crop_image_final,'L2', org_left , font_left , 
                     fontScale_left , color_left , thickness_left , cv2.LINE_AA)  # Using cv2.putText() method
 
   #Crop
-  crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
-  crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
+  #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   return crop_image_final
 
 ##########################################################################################################
-def ms1(img): #กรณีภาพลืมตา
-    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
-    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
-    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
-    return ER, EL, OR, OL
-
-def ms2(img): #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
-    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
-    OR = 0 #ค่า OSA ตาขวา
-    OL = 0 #ค่า OSA ตาซ้าย
-    return ER, EL, OR, OL
-
 ##########################################################################################################
