@@ -1,4 +1,5 @@
 #Server Side
+from dataclasses import field
 from pyexpat import model
 from flask import Flask,send_file
 from flask_restful import Api,Resource,abort
@@ -104,6 +105,9 @@ def upload_file():
                     image_path_2 = f"file {str(num[1])}.jpg"
 
                     print("Same time op ==> ",image_path_1,image_path_2)
+
+                #if field == 
+
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
                     result_imagePath1,result_0 = Same_Time_Op(result_align_1)
                     result_imagePath2, result_1 = Same_Time_Op(result_align_2)
