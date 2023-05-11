@@ -100,13 +100,18 @@ def upload_file():
 
                     num = element.content.split(", ")
                     num = [int(x) for x in num]
-                    image_path_1 = f"file {str(num[0])}.jpg"
-                    image_path_2 = f"file {str(num[1])}.jpg"
+                    image_path_1 = f"files {str(num[0])}.jpg"
+                    image_path_2 = f"files {str(num[1])}.jpg"
+                    image1 = cv2.imread(image_path_1) #แก้
+                    image2 = cv2.imread(image_path_2) #แก้
+                    #print("check path",image_path_1)
+
 
                     print("Same time op ==> ",image_path_1,image_path_2)
-                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_align_1, result_align_2 = align_result(image1, image2) #แก้
                     result_imagePath1 = Same_Time_Op(result_align_1)
                     result_imagePath2 = Same_Time_Op(result_align_2)
+                    #print("check result",result_imagePath1)
                     result_0 = "test"
                     result_1 = "test"
                                         
@@ -121,11 +126,14 @@ def upload_file():
                 else:
                     num = element.content.split(", ")
                     num = [int(x) for x in num]
-                    image_path_1 = f"file {str(num[0])}.jpg"
-                    image_path_2 = f"file {str(num[1])}.jpg"
+                    image_path_1 = f"files {str(num[0])}.jpg"
+                    #print("check path",image_path_1)
+                    image_path_2 = f"files {str(num[1])}.jpg"
+                    image1 = cv2.imread(image_path_1) #แก้
+                    image2 = cv2.imread(image_path_2) #แก้
                     print("Diff time op ==> ",image_path_1,image_path_2)
 
-                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_align_1, result_align_2 = align_result(image1, image2) #แก้
 
                     Same_Time_Op(result_align_1)
                     Same_Time_Op(result_align_2)
@@ -294,7 +302,7 @@ def contact():
 
 #run Main
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True) #แก้
     #127 = host='0.0.0.0'
 
 
