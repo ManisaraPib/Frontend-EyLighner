@@ -111,7 +111,8 @@ def upload_file():
                     result_align_1, result_align_2 = align_result(image1, image2) #แก้
                     result_imagePath1 = Same_Time_Op(result_align_1)
                     result_imagePath2 = Same_Time_Op(result_align_2)
-                    #print("check result",result_imagePath1)
+                    print("check result",result_imagePath1)
+                    print("check result2",result_imagePath2)
                     result_0 = "test"
                     result_1 = "test"
                                         
