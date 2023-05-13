@@ -120,7 +120,9 @@ def transform(image1, image2):
 
 def align_result(image1, image2):
     im1 = cv2.imread(image1)
+    assert type(im1) != None, "ERROR| align_result | Can not load im1 image"
     im2 = cv2.imread(image2)
+    assert type(im2) != None, "ERROR| align_result | Can not load im2 image"
     auto_result1 = automatic_brightness_and_contrast(im1)
     tf_1 = transform(im1, im2)
     return auto_result1, tf_1
