@@ -5,7 +5,7 @@ import numpy as np
 from shapely.geometry import Polygon
 import matplotlib.pyplot as plt
 from IPython.display import Image as imgdisp, display
-
+import os
 
 def landmarks_list(im):
   mp_drawing = mp.solutions.drawing_utils
@@ -119,10 +119,10 @@ def transform(image1, image2):
     return image
 
 def align_result(image1, image2):
-       
-    auto_result1 = automatic_brightness_and_contrast(image1)
-    tf_1 = transform(image1, image2)
-
+    im1 = cv2.imread(image1)
+    im2 = cv2.imread(image2)
+    auto_result1 = automatic_brightness_and_contrast(im1)
+    tf_1 = transform(im1, im2)
     return auto_result1, tf_1
 
 ##########################################################################################################
@@ -650,8 +650,10 @@ def SameTime_Image_Open(img):
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
   #crop_image_final = cv2.resize(crop_image_final, new_size)
 
+  # Generate a unique file name
+  output_path = cv2.imwrite('SameTime Open.jpg',crop_image_final )
 
-  return crop_image_final
+  return output_path
 ##################################################################################################################
 
 def SameTime_Image_Close(img):
@@ -744,8 +746,10 @@ def SameTime_Image_Close(img):
   #Crop
   #crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  # Generate a unique file name
+  output_path = cv2.imwrite('SameTime Close.jpg',crop_image_final )
 
-  return crop_image_final
+  return output_path
 
 
 ##################################################################################################################
@@ -867,8 +871,10 @@ def DifTime_Image_Open_1(img):
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
   #plt.imshow(crop_image_final)
+  # Generate a unique file name
+  output_path = cv2.imwrite('DifTime Open 1.jpg',crop_image_final )
 
-  return crop_image_final
+  return output_path
 
 ##########################################################################################
 
@@ -988,7 +994,9 @@ def DifTime_Image_Open_2(img):
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
-  return crop_image_final
+  output_path = cv2.imwrite('DifTime Open 2.jpg',crop_image_final )
+
+  return output_path
 
 
 ##########################################################################################
@@ -1105,8 +1113,9 @@ def DifTime_Image_Close_1(img):
   #Crop
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  output_path = cv2.imwrite('DifTime Close 1.jpg',crop_image_final )
 
-  return crop_image_final
+  return output_path
 
 ##########################################################################################
 
@@ -1222,27 +1231,29 @@ def DifTime_Image_Close_2(img):
   #Crop
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+  output_path = cv2.imwrite('DifTime Close 2.jpg',crop_image_final )
 
-  return crop_image_final
+  return output_path
 
 ##########################################################################################################
 ##########################################################################################################
 
 # function กรณีเวลาเดียวกัน จะครอปแบบ full face ขนาด 800x850 px
 def Same_Time_Op(img):
+  #img = cv2.imread(img)
   if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
     img_same = SameTime_Image_Open(img) #ภาพครอป full face กรณีลืมตา
   else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OR = 0 #ค่า OSA ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
-  return ER, EL, OR, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return ER, OR, EL, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 
@@ -1251,43 +1262,19 @@ def Same_Time_Op(img):
 def Dif_Time_Op_1(img):
   if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Open_1(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
   else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OR = 0 #ค่า OSA ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
-def abc1(img):
-    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
-    OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
-    OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
-    #img_dif = DifTime_Image_Open_2(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
-    return ER, EL, OR, OL
-
-def abc2(img):
-    ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
-    OR = 0 #ค่า OSA ตาขวา
-    OL = 0 #ค่า OSA ตาซ้าย
-    #img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-    return ER, EL, OR, OL
-
-def abc3(img):
-  if OSA_Left_Eye(img) >= 2000 and OSA_Right_Eye(img) >= 2000 : #กรณีภาพลืมตา
-    ms = abc1(img)
-    img_dif = DifTime_Image_Open_2(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
-  else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
-    ms = abc2(img)
-    img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ms, img_dif
 ##########################################################################################
 
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
@@ -1295,148 +1282,26 @@ def abc3(img):
 def Dif_Time_Op_2(img):
   if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = OSA_Left_Eye(img) #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Open_2(img) #ภาพครอปเฉพาะตา และ คิ้ว กรณีลืมตา
   else: #กรณีภาพหลับตา --> ค่า OSA จะเป็น 0
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
-    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OR = 0 #ค่า OSA ตาขวา
+    EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################################
-##########################################################################################################
-##########################################################################################################
-##########################################################################################################
-# Importing the library
-#import psutil
-
-# Getting % usage of virtual_memory ( 3rd field)
-#print('RAM memory % used:', psutil.virtual_memory()[2])
-# Getting usage of virtual_memory in GB ( 4th field)
-#print('RAM Used (GB):', psutil.virtual_memory()[3]/1000000000)
 
 
+#Same_Time_Op  ---> รูปลืมตา : 'SameTime Open.jpg'
+#              ---> รูปหลับตา : 'SameTime Close.jpg'
 
+#Dif_Time_Op_1 ---> รูปลืมตา : 'DifTime Open 1.jpg'
+#              ---> รูปหลับตา : 'DifTime Close 1.jpg'
 
-
-############################################ เวลาเรียกใช้งาน ###############################################
-
-# path ของภาพ อันนี้เขียนไว้ให้ดูเฉยๆ เวลา รับ 1 คู่ จะมี 2 ภาพ
-#image_path_1 = cv2.imread('/Users/baitong/Documents/test1/2C4002EB-4AF6-446A-8834-5680E33B3801-15691-000002DD21D9B1EA.jpeg')
-#image_path_2 = cv2.imread('/Users/baitong/Documents/test1/6C6BD02E-7D22-488A-A431-3C049F9CD9C8-15691-000002DD28A56769.jpeg')
-#image_path_1 = cv2.imread('/Users/baitong/Documents/r2/IMG_7072.JPG')
-#image_path_2 = cv2.imread('/Users/baitong/Documents/r2/IMG_7073.JPG')
-#image_path_3 = cv2.imread('//Users/baitong/Documents/test new/close.jpeg')
-#image_path_4 = cv2.imread('/Users/baitong/Documents/test new/IMG_6537.JPG')
-#image_path_5 = cv2.imread('/Users/baitong/Documents/test new/IMG_6538.JPG')
-##########################################################################################################
-########## same time ##############
-# กรณีเวลาเดียวกัน
-# ครอปแบบ full face ขนาด 800x850 px
-# คำสั้งคือ 3 บรรทัดนี้ 
-#result_align_1, result_align_2 = align_result(image_path_2, image_path_3) 
-#A,B,C,D,E = Same_Time_Op(result_align_2)
-#print(A,B,C,D)
-#F = OSA_Right_Eye(result_align_2)
-#print(F)
-#E = SameTime_Image_Open(result_align_2)
-#E = SameTime_Image_Close(result_align_2)
-#E = DifTime_Image_Open_2(result_align_2)
-#E = DifTime_Image_Close_2(result_align_2)
-#E= crop_img(result_align_1)
-#cv2.imshow("Image", E)
-#cv2.waitKey(0)
-#cv2.destroyAllWindows()  
-
-#Same_Time_Op(result_align_2)
-#A,B = abc3(result_align_1)
-#print(A)
-
-# ฮธิบายแบบละเอียด
-
-# 1.) Aligment --> จัดสัดส่วนให้ทั้ง 2 ภาพเท่ากัน 
-#     - เรียกใช้งาน : result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-#     - ชื่อของ function : align_result
-#     - input จะใส่ไป 2 ภาพ : image_path_1, image_path_2
-#     - output เป็นภาพที่ align แล้ว 2 ภาพ : result_align_1, result_align_2
-
-# 2.) Measurement --> หาค่า EBH & OSA และ ขีดเส้นที่ตา + add text (R,L) ในภาพ 
-#     - เรียกใช้งาน Same_Time_Op(result_align_1)  และ Same_Time_Op(result_align_2)
-#     - ชื่อของ function : Same_Time_Op
-#     - อันนี้ถ้าเวลาเดียวกันจะมีแค่ function นี้อันเดียวเลย *************
-#     - input :  ภาพที่ได้จาก alignent 
-#     - output : return ออกมา 4 ค่า และ 1 ภาพ
-#                --> 4 ค่า เรียงลำดับคือ EHB Right, EBH Left, OSA Right, OSA Left
-# ตรง function มีอธิบายไว้ เลื่อนขึ้นไปนิดหน่อย
-
-
-
-##########################################################################################################
-########## Dif time ##############
-# กรณีคนละเวลา
-# ครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
-# คำสั้งคือ 3 บรรทัดนี้ 
-#result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-#Dif_Time_Op_1(result_align_1)
-#Dif_Time_Op_2(result_align_2)
-
-# ฮธิบายแบบละเอียด
-
-# 1.) Aligment --> จัดสัดส่วนให้ทั้ง 2 ภาพเท่ากัน 
-#     - เรียกใช้งาน : result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-#     - ชื่อของ function : align_result
-#     - input จะใส่ไป 2 ภาพ : image_path_1, image_path_2
-#     - output เป็นภาพที่ align แล้ว 2 ภาพ : result_align_1, result_align_2
-
-# 2.) Measurement --> หาค่า EBH & OSA และ ขีดเส้นที่ตา + add text (R,L) ในภาพ 
-#     - เรียกใช้งาน Same_Time_Op(result_align_1)  และ Same_Time_Op(result_align_2)
-#     - ชื่อของ function : Same_Time_Op_1 และ Same_Time_Op_2
-#                        ----> Same_Time_Op_1 : text จะเป็น R1, L1
-#                        ----> Same_Time_Op_2 : text จะเป็น R2, L2
-#     - อันนี้จะมี 2 function ต่างกับเวลาเดียวกัน **********
-#     - input :  ภาพที่ได้จาก alignent 
-#     - output : return ออกมา 4 ค่า และ 1 ภาพ
-#                --> 4 ค่า เรียงลำดับคือ EHB Right, EBH Left, OSA Right, OSA Left
-# ตรง function มีอธิบายไว้ เลื่อนขึ้นไปนิดหน่อย
-
-
-##########################################################################################################
-# อธิบายชื่อ function เพิ่มเติม 
-# 1. Alignment : align_result
-
-# 2. Measurement
-#       - output ออกมาเฉพาะค่า
-#             -----> EBH
-#                        - EBH ตาขวา : EBH_Right_Eye
-#                        - EBH ตาซ้าย : EBH_Left_Eye
-#             -----> OSA
-#                        - OSA ตาขวา : OSA_Right_Eye
-#                        - OSA ตาซ้าย : OSA_Left_Eye
-#       - output ออกมาเฉพาะรูปภาพ
-#             -----> เวลาเดียวกัน (จะครอปแบบ full face ขนาด 800x850 px)
-#                        - ภาพลืมตา : SameTime_Image_Open
-#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), เส้นลากรอบดวงตา, text(R1, L1) >>
-#                        - ภาพหลับตา : SameTime_Image_Close
-#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), text(R2, L2) >>
-#             -----> คนละเวลา(จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px)
-#                        - ภาพลืมตา 
-#                              o Text R1, L1 : DifTime_Image_Open_1
-#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), เส้นลากรอบดวงตา, text(R1, L1) >>
-#                              o Text R2, L2 : DifTime_Image_Open_2
-#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), เส้นลากรอบดวงตา, text(R2, L2) >>
-#                        - ภาพหลับตา 
-#                              o Text R1, L1 : DifTime_Image_Close_1
-#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), text(R1, L1) >>
-#                              o Text R2, L2 : DifTime_Image_Close_2
-#                                    << จะมีเส้น EBH (เส้นลากจากตาบนไปท้องคิ้ว), text(R2, L2) >>
-#       - output ออกมาทั้งค่าและรูปภาพ 
-#             -----> เวลาเดียวกัน : Same_Time_Op 
-#                         << จะ return ออกมา 4 ค่า คือ EHB Right, EBH Left, OSA Right, OSA Left และ 1 ภาพ >>
-#             -----> คนละเวลา
-#                         - Text R1, L1 : Dif_Time_Op_1
-#                         - Text R2, L2 : Dif_Time_Op_2
-#                         << จะ return ออกมา 4 ค่า คือ EHB Right, EBH Left, OSA Right, OSA Left และ 1 ภาพ >>
+#Dif_Time_Op_1 ---> รูปลืมตา : 'DifTime Open 2.jpg'
+#              ---> รูปหลับตา : 'DifTime Close 2.jpg'   
