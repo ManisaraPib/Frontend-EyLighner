@@ -78,6 +78,8 @@ def upload_file():
             cv.imwrite(path, img)
         
         for x in form_list:
+            print("DEBUG| from_list item:",x)
+
             if 'type' in x.image_id:
                 data_name.append(x)
             if 'files' in x.image_id :
@@ -91,53 +93,61 @@ def upload_file():
 
         # print("data:",data)
         # print("form list:",form_list)
-        # print("name: ", data_name)
+        for i in data_name:
+            print("DEBUG| image name: ", i)
 
-        for element in data:
-            if element.content != 'None' and element.content != 'null':
-                file_id = element.image_id
+        model_result_list = []
+        for n in range(len(data)):
+            print("DEBUG: data:",data[n])
+            if data[n].content != 'None' and data[n].content != 'null':
+                file_id = data[n].image_id
                 if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 15":
-
-                    num = element.content.split(", ")
+                    num = data[n].content.split(", ")
                     num = [int(x) for x in num]
                     image_path_1 = f"files{str(num[0])}.jpg"
                     image_path_2 = f"files{str(num[1])}.jpg"
 
                     print("INFO| Same time op ==> ",image_path_1,image_path_2)
-                    result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
+                    # result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
+                    image1 = cv2.imread(image_path_1)
+                    image2 = cv2.imread(image_path_2)
+                    print('check result1',image1,image2)
                     
-                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    # result_imagePath1,result_0 = Same_Time_Op(result_align_1)
-                    # result_imagePath2, result_1 = Same_Time_Op(result_align_2)
-                    result_0 = "result1"
-                    result_1 = "result2"
+                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+
                     model_result['0'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
-                        'name' : "test1"
+                        'name' : data_name[n].content
                     }
 
                 else:
-                    num = element.content.split(", ")
+                    num = data[n].content.split(", ")
                     num = [int(x) for x in num]
-                    image_path_1 = f"file {str(num[0])}.jpg"
-                    image_path_2 = f"file {str(num[1])}.jpg"
-                    print("INFO| Diff time op ==> ",image_path_1,image_path_2)
+                    image_path_1 = f"files{str(num[0])}.jpg"
+                    image_path_2 = f"files{str(num[1])}.jpg"
 
-                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    print("INFO| Same time op ==> ",image_path_1,image_path_2)
+                    # result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
 
-                    # result_imagePath1,result_0 = Same_Time_Op(result_align_1)
-                    # result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
 
-                    model_result['1'] = {
-                        'url1' : f"{ip}{result_imagePath1}",
-                        'url2' : f"{ip}{result_imagePath2}",
+                    result_0 = "result1"
+                    result_1 = "result2"
+                    model_result[f'{n}'] = {
+                        'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
+                        'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
-                        'name' : "test2"
+                        'name' : data_name[n].content
                     }
+
     print("DEBUG| model result: ",model_result)
     return model_result
 
