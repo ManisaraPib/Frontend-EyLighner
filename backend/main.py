@@ -1,7 +1,7 @@
 #Server Side
 from dataclasses import field
 from pyexpat import model
-from flask import Flask,send_file
+from flask import Flask,send_file,send_from_directory
 from flask_restful import Api,Resource,abort
 from flask import Flask, request,jsonify,json
 from flask_cors import CORS, cross_origin
@@ -21,6 +21,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
 from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
+from Algorithm.testAlgo import testModel
 
 
 # from zmq import Message
@@ -62,7 +63,7 @@ def upload_file():
     ip = get_ip()
     # Get post method from frontend
     if request.method == 'POST':
-        print("uploading...")
+        print("INFO| image uploading...")
         form_list = [Files(*item) for item in list(request.form.items())]
         recieved_list = request.files.getlist('files')
         for i in range (0,len(recieved_list)):
@@ -73,7 +74,7 @@ def upload_file():
             file_bytes = numpy.frombuffer(file_bytes, numpy.uint8)
             # convert numpy array to image
             img = cv.imdecode(file_bytes, cv.IMREAD_COLOR)
-            path = f"files {i+1}.jpg"
+            path = f"files{i+1}.jpg"
             cv.imwrite(path, img)
         
         for x in form_list:
@@ -82,17 +83,15 @@ def upload_file():
             if 'files' in x.image_id :
                 num = re.findall(r'\d+', x.content)
                 status = True
-                print(num)
                 for i in num:
-                    print(i)
                     if int(i) > len(recieved_list):
                         status = False
                 if status == True:
                     data.append(x)
 
-        print("data:",data)
-        print("form list:",form_list)
-        print("name: ", data_name)
+        # print("data:",data)
+        # print("form list:",form_list)
+        # print("name: ", data_name)
 
         for element in data:
             if element.content != 'None' and element.content != 'null':
@@ -101,77 +100,54 @@ def upload_file():
 
                     num = element.content.split(", ")
                     num = [int(x) for x in num]
-                    image_path_1 = f"file {str(num[0])}.jpg"
-                    image_path_2 = f"file {str(num[1])}.jpg"
+                    image_path_1 = f"files{str(num[0])}.jpg"
+                    image_path_2 = f"files{str(num[1])}.jpg"
 
-                    print("Same time op ==> ",image_path_1,image_path_2)
-
-                #if field == 
-
-                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
-                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
-                   
-                                        
+                    print("INFO| Same time op ==> ",image_path_1,image_path_2)
+                    result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
+                    
+                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    # result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    # result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    result_0 = "result1"
+                    result_1 = "result2"
                     model_result['0'] = {
-                        'url1' : f"{ip}/image/{result_imagePath1}",
-                        'url2' : f"{ip}/image/{result_imagePath2}",
+                        'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
+                        'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
-                        'name' : ""
+                        'name' : "test1"
                     }
-                    print(model_result)
 
                 else:
                     num = element.content.split(", ")
                     num = [int(x) for x in num]
                     image_path_1 = f"file {str(num[0])}.jpg"
                     image_path_2 = f"file {str(num[1])}.jpg"
-                    print("Diff time op ==> ",image_path_1,image_path_2)
+                    print("INFO| Diff time op ==> ",image_path_1,image_path_2)
 
-                    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    # result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
 
-                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
-                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    # result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    # result_imagePath2, result_1 = Same_Time_Op(result_align_2)
 
                     model_result['1'] = {
-                        'url1' : f"{ip}/image/{result_imagePath1}",
-                        'url2' : f"{ip}/image/{result_imagePath2}",
+                        'url1' : f"{ip}{result_imagePath1}",
+                        'url2' : f"{ip}{result_imagePath2}",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
-                        'name' : ""
+                        'name' : "test2"
                     }
-                    
-                    print(model_result)
-
+    print("DEBUG| model result: ",model_result)
     return model_result
 
+
+# test url : http://127.0.0.1:5000/image/IMG_5448.JPG
 @app.route('/image/<imagePath>')
 def get_image2(imagePath:str):
-    # # Read the second image using cv2.imread()
-    image = cv2.imread(f'{imagePath}')
-    print("imageName", imagePath)
-    cv2.imwrite('./test.jpg', image)
+    print("DEBUG| get image : ", imagePath)
+    return send_from_directory(".",imagePath)
 
-    # Convert the image to bytes
-    _, buffer2 = cv2.imencode('.jpg', image)
-    image_bytes2 = buffer2.tobytes()
-
-    # Return the image bytes along with the appropriate MIME type
-    return send_file(
-        io.BytesIO(image_bytes2),
-        mimetype='image/jpeg'
-    )
-    # Open the image file and read its contents as binary data
-    # with open(f'{imagePath}', 'rb') as f:
-    #     image_data = f.read()
-        
-
-    # # Return the image data along with the appropriate MIME type
-    # return send_file(
-    #     io.BytesIO(image_data),
-    #     mimetype='image/jpeg'
-    # )
 
 
 #Select Image from Folder
