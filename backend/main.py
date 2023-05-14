@@ -111,7 +111,7 @@ def upload_file():
                     # result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
                     image1 = cv2.imread(image_path_1)
                     image2 = cv2.imread(image_path_2)
-                    print('check result1',image1,image2)
+                    # print('check result1',image1,image2)
                     
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
                     result_imagePath1,result_0 = Same_Time_Op(result_align_1)
