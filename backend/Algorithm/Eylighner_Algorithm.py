@@ -1255,13 +1255,13 @@ def Same_Time_Op(img):
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
-    result_list = []
-    result_list.append(ER)
-    result_list.append(EL)
-    result_list.append(OR)
-    result_list.append(OL)
-  return str(result_list), img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
-  #return ER, OR, EL, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+#     result_list = []
+#     result_list.append(ER)
+#     result_list.append(EL)
+#     result_list.append(OR)
+#     result_list.append(OL)
+#   return str(result_list), img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return ER, OR, EL, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 
@@ -1280,13 +1280,13 @@ def Dif_Time_Op_1(img):
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-    result_list = []
-    result_list.append(ER)
-    result_list.append(EL)
-    result_list.append(OR)
-    result_list.append(OL)
-  return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
-  #return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+#     result_list = []
+#     result_list.append(ER)
+#     result_list.append(EL)
+#     result_list.append(OR)
+#     result_list.append(OL)
+#   return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 ##########################################################################################
@@ -1306,6 +1306,12 @@ def Dif_Time_Op_2(img):
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
+    # result_list = []
+    # result_list.append(ER)
+    # result_list.append(EL)
+    # result_list.append(OR)
+    # result_list.append(OL)
+    # return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
   return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################################

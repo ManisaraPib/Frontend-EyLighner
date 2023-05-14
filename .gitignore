@@ -6,7 +6,7 @@ backend/__pycache__/models.cpython-39.pyc
 backend/Algorithm/__pycache__/Eylighner_Algorithm.cpython-39.pyc
 *.pyc
 .eyl 
-.eyl/bin/activate
+eyl/bin/activate
 *.csh
 *.fish
 *.ps1

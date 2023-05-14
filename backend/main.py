@@ -21,7 +21,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from werkzeug.datastructures import ImmutableMultiDict,FileStorage
 from Algorithm.Eylighner_Algorithm import Same_Time_Op, Dif_Time_Op_1, Dif_Time_Op_2, align_result
-from Algorithm.testAlgo import testModel
+#from Algorithm.testAlgo import testModel
 
 
 # from zmq import Message
@@ -198,27 +198,6 @@ def get_image2(imagePath:str):
 #     except Exception as e:
 #         print(e)
 #         return 'error'
-
-# files 2 : 1 = Dif_Time_Op_1
-#           3 = Dif_Time_Op_2
-# files 4 : 1 = Dif_Time_Op_1
-#           5 = Dif_Time_Op_2
-# files 5 : 3 = Dif_Time_Op_1
-#           5 = Dif_Time_Op_2
-# files 7 : 1 = Dif_Time_Op_1
-#           7 = Dif_Time_Op_2
-# files 8 : 3 = Dif_Time_Op_1
-#           7 = Dif_Time_Op_2
-# files 9 : 5 = Dif_Time_Op_1
-#           7 = Dif_Time_Op_2
-# files 11 :  1 = Dif_Time_Op_1
-#             9 = Dif_Time_Op_2
-# files 12 :  3 = Dif_Time_Op_1
-#             9 = Dif_Time_Op_2
-# files 13 :  5 = Dif_Time_Op_1
-#             9 = Dif_Time_Op_2
-# files 14 :  7 = Dif_Time_Op_1
-#             9 = Dif_Time_Op_2
         
 #Contact Page
 @app.route('/contact', methods=['GET', 'POST'])
