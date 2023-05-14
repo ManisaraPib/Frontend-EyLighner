@@ -653,7 +653,7 @@ def SameTime_Image_Open(img):
   #crop_image_final = cv2.resize(crop_image_final, new_size)
 
   # Generate a unique file name
-  output_path = cv2.imwrite('SameTime Open.jpg',crop_image_final )
+  output_path = cv2.imwrite('SameTime_Open.jpg',crop_image_final )
 
   return output_path
 ##################################################################################################################
@@ -749,7 +749,7 @@ def SameTime_Image_Close(img):
   #crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
   # Generate a unique file name
-  output_path = cv2.imwrite('SameTime Close.jpg',crop_image_final )
+  output_path = cv2.imwrite('SameTime_Close.jpg',crop_image_final )
 
   return output_path
 
@@ -874,7 +874,7 @@ def DifTime_Image_Open_1(img):
 
   #plt.imshow(crop_image_final)
   # Generate a unique file name
-  output_path = cv2.imwrite('DifTime Open 1.jpg',crop_image_final )
+  output_path = cv2.imwrite('DifTime_Open_1.jpg',crop_image_final )
 
   return output_path
 
@@ -996,7 +996,7 @@ def DifTime_Image_Open_2(img):
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
 
-  output_path = cv2.imwrite('DifTime Open 2.jpg',crop_image_final )
+  output_path = cv2.imwrite('DifTime_Open_2.jpg',crop_image_final )
 
   return output_path
 
@@ -1115,7 +1115,7 @@ def DifTime_Image_Close_1(img):
   #Crop
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
-  output_path = cv2.imwrite('DifTime Close 1.jpg',crop_image_final )
+  output_path = cv2.imwrite('DifTime_Close_1.jpg',crop_image_final )
 
   return output_path
 
@@ -1233,7 +1233,7 @@ def DifTime_Image_Close_2(img):
   #Crop
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
-  output_path = cv2.imwrite('DifTime Close 2.jpg',crop_image_final )
+  output_path = cv2.imwrite('DifTime_Close_2.jpg',crop_image_final )
 
   return output_path
 
