@@ -114,9 +114,9 @@ def transform(image1, image2):
                                    
     warped_im2 = warp_im(im2, homography, im1.shape)
 
-    cv2.imwrite('output.jpg',warped_im2)
-    image = cv2.imread('output.jpg')
-    return image
+    #cv2.imwrite('output.jpg',warped_im2)
+    #image = cv2.imread('output.jpg')
+    return warped_im2
 
 def align_result(image1, image2):
     im1 = cv2.imread(image1)
