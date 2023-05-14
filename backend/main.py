@@ -78,8 +78,7 @@ def upload_file():
             cv.imwrite(path, img)
         
         for x in form_list:
-            print("DEBUG| from_list item:",x)
-
+            # print("DEBUG| from_list item:",x)
             if 'type' in x.image_id:
                 data_name.append(x)
             if 'files' in x.image_id :
@@ -93,8 +92,8 @@ def upload_file():
 
         # print("data:",data)
         # print("form list:",form_list)
-        for i in data_name:
-            print("DEBUG| image name: ", i)
+        # for i in data_name:
+        #     print("DEBUG| image name: ", i)
 
         model_result_list = []
         for n in range(len(data)):
@@ -109,15 +108,18 @@ def upload_file():
 
                     print("INFO| Same time op ==> ",image_path_1,image_path_2)
                     # result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
-                    image1 = cv2.imread(image_path_1)
-                    image2 = cv2.imread(image_path_2)
                     # print('check result1',image1,image2)
                     
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
                     result_imagePath1,result_0 = Same_Time_Op(result_align_1)
-                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    assert result_imagePath1 != None, "ERROR| SameTimeOp | No image return"
 
-                    model_result['0'] = {
+                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    assert result_imagePath2 != None, "ERROR| SameTimeOp | No image return"
+                    
+                    print(f"INFO| SameTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
+
+                    model_result[f'{n}'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
                         '0' : f"{result_0}",
@@ -136,10 +138,13 @@ def upload_file():
 
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
                     result_imagePath1,result_0 = Same_Time_Op(result_align_1)
-                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    assert result_imagePath1 != None, "ERROR| DiffTimeOp | No image return"
 
-                    result_0 = "result1"
-                    result_1 = "result2"
+                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    assert result_imagePath2 != None, "ERROR| DiffTimeOp | No image return"
+
+                    print(f"INFO| DiffTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
+
                     model_result[f'{n}'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
@@ -147,8 +152,8 @@ def upload_file():
                         '1' : f"{result_1}",
                         'name' : data_name[n].content
                     }
-
-    print("DEBUG| model result: ",model_result)
+    json_string = json.dumps(model_result, indent=4)
+    print("DEBUG| model result: ",json_string)
     return model_result
 
 
