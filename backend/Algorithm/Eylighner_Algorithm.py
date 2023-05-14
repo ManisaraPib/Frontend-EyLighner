@@ -1258,8 +1258,8 @@ def Same_Time_Op(img):
 
   result_list = []
   result_list.append(str(ER))
-  result_list.append(str(EL))
   result_list.append(str(OR))
+  result_list.append(str(EL))
   result_list.append(str(OL))
 #   return str(result_list), img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
   return img_same,result_list #จะ return ค่าทั้ง 4 และ ภาพออกมา
@@ -1283,8 +1283,8 @@ def Dif_Time_Op_1(img):
     img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
   result_list = []
   result_list.append(str(ER))
-  result_list.append(str(EL))
   result_list.append(str(OR))
+  result_list.append(str(EL))
   result_list.append(str(OL))
 #   return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
   return img_dif,result_list #จะ return ค่าทั้ง 4 และ ภาพออกมา
