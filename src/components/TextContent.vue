@@ -4732,7 +4732,7 @@ export default {
             formData.append("type 14", `${this.text_follow_4} and ${this.text_follow_5}`);
             formData.append("type 15", `${this.text_follow_5}`);
 
-            axios.post('http://127.0.0.1:5000/upload_files',
+            axios.post('http://localhost:5000/upload_files',
                 // axios.post('http://localhost:3000/upload_files',
                 formData,
                 {
