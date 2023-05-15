@@ -121,8 +121,8 @@ def upload_file():
                     print(f"INFO| SameTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
 
                     model_result[f'{image_num}'] = {
-                        'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
-                        'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
+                        'url1' : f"http://31.220.6.186:8443/image/{result_imagePath1}",
+                        'url2' : f"http://31.220.6.186:8443/image/{result_imagePath2}",
                         '0' : result_0,
                         '1' : result_1,
                         'name' : data_name[n].content
@@ -148,8 +148,8 @@ def upload_file():
                     print(f"INFO| DiffTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
 
                     model_result[f'{image_num}'] = {
-                        'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
-                        'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
+                        'url1' : f"http://31.220.6.186:8443/image/{result_imagePath1}",
+                        'url2' : f"http://31.220.6.186:8443/image/{result_imagePath2}",
                         '0' : result_0,
                         '1' : result_1,
                         'name' : data_name[n].content
@@ -270,7 +270,7 @@ def contact():
 
 #run Main
 if __name__ == "__main__":
-    app.run(host="localhost", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=8443, debug=True)
     #127 = host='0.0.0.0'
 
 
