@@ -95,7 +95,7 @@ def upload_file():
         # for i in data_name:
         #     print("DEBUG| image name: ", i)
 
-        model_result_list = []
+        image_num = 0
         for n in range(len(data)):
             print("DEBUG: data:",data[n])
             if data[n].content != 'None' and data[n].content != 'null':
@@ -119,13 +119,14 @@ def upload_file():
                     
                     print(f"INFO| SameTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
 
-                    model_result[f'{n}'] = {
+                    model_result[f'{image_num}'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
                         'name' : data_name[n].content
                     }
+                    image_num = image_num+1
 
                 else:
                     num = data[n].content.split(", ")
@@ -145,13 +146,14 @@ def upload_file():
 
                     print(f"INFO| DiffTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
 
-                    model_result[f'{n}'] = {
+                    model_result[f'{image_num}'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
                         'name' : data_name[n].content
                     }
+                    image_num = image_num + 1
     json_string = json.dumps(model_result, indent=4)
     print("DEBUG| model result: ",json_string)
     return model_result
