@@ -52,9 +52,12 @@ def get_ip():
     ip = socket.gethostbyname(host)    # get the IP address using socket.gethostbyname()
     return ip
 
+@app.route('/', methods=['GET', 'POST'])
+def test():
+    return "eyeliner ai server"
 
 #Upload 
-@app.route('/upload_files', methods=['GET', 'POST'])
+@app.route('/upload_files/', methods=['GET', 'POST'])
 def upload_file():
 
     data = []
