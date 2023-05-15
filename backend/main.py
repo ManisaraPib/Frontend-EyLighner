@@ -65,11 +65,11 @@ def upload_file():
     if request.method == 'POST':
         print("INFO| image uploading...")
         form_list = [Files(*item) for item in list(request.form.items())]
+        form_list.pop(0)
         recieved_list = request.files.getlist('files')
         for i in range (0,len(recieved_list)):
             fileStorage = recieved_list[i]
             file_bytes = fileStorage.read()
-
             #convert string data to numpy array
             file_bytes = numpy.frombuffer(file_bytes, numpy.uint8)
             # convert numpy array to image
