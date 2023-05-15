@@ -92,11 +92,12 @@ def upload_file():
 
         # print("data:",data)
         # print("form list:",form_list)
-        # for i in data_name:
-        #     print("DEBUG| image name: ", i)
+        for i in data_name:
+            print("DEBUG| image name: ", i)
 
         image_num = 0
-        for n in range(len(data)):
+        for n in range(0,len(data)):
+            print ("DEBUG|dataname: ",data_name[n].content)
             print("DEBUG: data:",data[n])
             if data[n].content != 'None' and data[n].content != 'null':
                 file_id = data[n].image_id
@@ -122,8 +123,8 @@ def upload_file():
                     model_result[f'{image_num}'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
-                        '0' : f"{result_0}",
-                        '1' : f"{result_1}",
+                        '0' : result_0,
+                        '1' : result_1,
                         'name' : data_name[n].content
                     }
                     image_num = image_num+1
@@ -149,8 +150,8 @@ def upload_file():
                     model_result[f'{image_num}'] = {
                         'url1' : f"http://{ip}:5000/image/{result_imagePath1}",
                         'url2' : f"http://{ip}:5000/image/{result_imagePath2}",
-                        '0' : f"{result_0}",
-                        '1' : f"{result_1}",
+                        '0' : result_0,
+                        '1' : result_1,
                         'name' : data_name[n].content
                     }
                     image_num = image_num + 1

@@ -65,3 +65,4 @@ backend/eyl/bin/python
 backend/eyl/bin/python3
 backend/eyl/bin/ttx
 *.jpg
+*.png
