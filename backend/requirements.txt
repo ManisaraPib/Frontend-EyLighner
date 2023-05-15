@@ -56,4 +56,4 @@ zipp==3.15.0
 flask_cors
 #cv2
 numpy
-PIL
+# PIL
