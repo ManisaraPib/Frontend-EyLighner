@@ -756,6 +756,7 @@ def SameTime_Image_Close(img):
   #crop_image_final = image_final[200:1050, 500:1300] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
   # Generate a unique file name
+
   #output_path = cv2.imwrite('SameTime Close.jpg',crop_image_final )
 
   # Generate a random filename using UUID
@@ -895,6 +896,7 @@ def DifTime_Image_Open_1(img):
   # Save the image using OpenCV
   cv2.imwrite(output_path, crop_image_final)
 
+
   return output_path
 
 ##########################################################################################
@@ -1023,6 +1025,7 @@ def DifTime_Image_Open_2(img):
   # Save the image using OpenCV
   cv2.imwrite(output_path, crop_image_final)
 
+
   return output_path
 
 
@@ -1140,6 +1143,7 @@ def DifTime_Image_Close_1(img):
   #Crop
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+
   #output_path = cv2.imwrite('DifTime Close 1.jpg',crop_image_final )
 
   # Generate a random filename using UUID
@@ -1264,6 +1268,7 @@ def DifTime_Image_Close_2(img):
   #Crop
   #crop_image_final = image_final[300:700, 400:1400] # Slicing to crop the image
   #crop_image_final = cv2.cvtColor(crop_image_final, cv2.COLOR_RGB2BGR)
+
   #output_path = cv2.imwrite('DifTime Close 2.jpg',crop_image_final )
 
   # Generate a random filename using UUID
@@ -1292,13 +1297,14 @@ def Same_Time_Op(img):
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
-    result_list = []
-    result_list.append(ER)
-    result_list.append(EL)
-    result_list.append(OR)
-    result_list.append(OL)
-  return str(result_list), img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
-  #return ER, OR, EL, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+
+  result_list = []
+  result_list.append(str(ER))
+  result_list.append(str(OR))
+  result_list.append(str(EL))
+  result_list.append(str(OL))
+#   return str(result_list), img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return img_same,result_list #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 
@@ -1317,13 +1323,13 @@ def Dif_Time_Op_1(img):
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-    result_list = []
-    result_list.append(ER)
-    result_list.append(EL)
-    result_list.append(OR)
-    result_list.append(OL)
-  return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
-  #return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  result_list = []
+  result_list.append(str(ER))
+  result_list.append(str(OR))
+  result_list.append(str(EL))
+  result_list.append(str(OL))
+#   return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return img_dif,result_list #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 ##########################################################################################
@@ -1343,7 +1349,13 @@ def Dif_Time_Op_2(img):
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ER, OR, EL, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  result_list = []
+  result_list.append(str(ER))
+  result_list.append(str(EL))
+  result_list.append(str(OR))
+  result_list.append(str(OL))
+    # return str(result_list),  img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return img_dif,result_list #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################################
 
