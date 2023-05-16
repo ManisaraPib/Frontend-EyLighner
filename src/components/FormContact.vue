@@ -66,7 +66,7 @@ export default {
             this.sending = true;
             // this.textButton = "Sending...";
             axios
-                .post("http://31.220.6.186:8443/contact", this.form) //Nest 8000, Flask 5000
+                .post("http://localhost:8443/contact", this.form) //Nest 8000, Flask 5000
                 .then((res) => {
                     if (res.data.message == "success") {
                         alert("Success");

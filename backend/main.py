@@ -124,8 +124,8 @@ def upload_file():
                     print(f"INFO| SameTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
 
                     model_result[f'{image_num}'] = {
-                        'url1' : f"http://31.220.6.186:8443/image/{result_imagePath1}",
-                        'url2' : f"http://31.220.6.186:8443/image/{result_imagePath2}",
+                        'url1' : f"http://localhost:8443/image/{result_imagePath1}",
+                        'url2' : f"http://localhost:8443/image/{result_imagePath2}",
                         '0' : result_0,
                         '1' : result_1,
                         'name' : data_name[n].content
@@ -151,8 +151,8 @@ def upload_file():
                     print(f"INFO| DiffTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
 
                     model_result[f'{image_num}'] = {
-                        'url1' : f"http://31.220.6.186:8443/image/{result_imagePath1}",
-                        'url2' : f"http://31.220.6.186:8443/image/{result_imagePath2}",
+                        'url1' : f"hhttp://localhost:8443/image/{result_imagePath1}",
+                        'url2' : f"http://localhost:8443/image/{result_imagePath2}",
                         '0' : result_0,
                         '1' : result_1,
                         'name' : data_name[n].content
