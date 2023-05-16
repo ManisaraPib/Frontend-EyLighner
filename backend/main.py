@@ -102,6 +102,18 @@ def upload_file():
         for n in range(0,len(data)):
             print ("DEBUG|dataname: ",data_name[n].content)
             print("DEBUG: data:",data[n])
+            if data[n].content == 'None':
+                #print(f"INFO| SameTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
+           
+                model_result[f'{image_num}'] = {
+                    "url1" : "",
+                    "url2" : "",
+                    "0" : [],
+                    "1" : [],
+                    "name" : ""
+                }
+                image_num = image_num+1
+
             if data[n].content != 'None' and data[n].content != 'null':
                 file_id = data[n].image_id
                 if file_id == "files 1" or file_id == "files 3" or file_id == "files 6" or file_id == "files 10" or file_id == "files 15":
@@ -142,10 +154,10 @@ def upload_file():
                     # result_imagePath1,result_imagePath2 = testModel(image_path_1,image_path_2)
 
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    result_imagePath1,result_0 = Same_Time_Op(result_align_1)
+                    result_imagePath1,result_0 = Dif_Time_Op_1(result_align_1)
                     assert result_imagePath1 != None, "ERROR| DiffTimeOp | No image return"
 
-                    result_imagePath2, result_1 = Same_Time_Op(result_align_2)
+                    result_imagePath2, result_1 = Dif_Time_Op_2(result_align_2)
                     assert result_imagePath2 != None, "ERROR| DiffTimeOp | No image return"
 
                     print(f"INFO| DiffTimeOp | return image : {result_imagePath1} , {result_imagePath2}")
@@ -158,9 +170,9 @@ def upload_file():
                         'name' : data_name[n].content
                     }
                     image_num = image_num + 1
-    json_string = json.dumps(model_result, indent=4)
-    print("DEBUG| model result: ",json_string)
-    return model_result
+        json_string = json.dumps(model_result, indent=4)
+        print("DEBUG| model result: ",json_string)
+        return model_result
 
 
 # test url : http://127.0.0.1:5000/image/IMG_5448.JPG
@@ -275,7 +287,3 @@ def contact():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8443, debug=True)
     #127 = host='0.0.0.0'
-
-
-
-          
