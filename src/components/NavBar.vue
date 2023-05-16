@@ -43,7 +43,7 @@
                                                                   space-y-4
                                                                   md:flex md:space-y-0 md:flex-row md:items-center md:space-x-5 md:mt-0
                                                                 ">
-                <p class="text-white font-semibold md:text-base">Eye alignment</p>
+                <p class="text-white font-semibold md:text-base">Eye Alignment</p>
                 <div class="box bg-white md:px-0.5 md:py-3 sm:px-10 sm:py-0.5"></div>
                 <a class="text-gray-100 font-light hover:text-neutral-400" href="/">Home</a>
                 <a class="text-gray-100 font-light hover:text-neutral-400" href="/contact">Contact Us</a>

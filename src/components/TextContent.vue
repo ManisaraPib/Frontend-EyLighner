@@ -8,11 +8,11 @@
                     </div>
                     <div class="leading-tighter text-text1 font-semibold text-sm font-sans">in version 1</div>
                     <div class="text-md sm:text-left leading-normal flex-start text-text2 font-sans">
-                        The
-                        EyLighner project uses image processing to create an algorithm, the composition<br> is aligned
-                        and measures automatically the distance of the ability to open the eyes.
+                        The EyLighner Web Application uses image processing to create an algorithm that aligns and
+                        automatically measures the distance of the ability of open and close eyes with EBH and OSA value to
+                        assess the pre and post-operation.
                     </div>
-                     <a class="flex justify-left py-2" href="https://youtu.be/MVLaZoR23wU" target="_blank">
+                    <a class="flex justify-left py-2" href="https://youtu.be/MVLaZoR23wU" target="_blank">
                         <button
                             class="inline-flex items-center text-white bg-btn2 border-lg py-2 px-6 focus:outline-none hover:bg-btn22 rounded-lg text-lg">Tutorial
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -917,6 +917,11 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="flex text-sm text-text1 text-zinc-600 font-sans mt-1">* The algorithm will undergo processing for a
+                duration of <p class="font-medium text-sm text-text1 text-zinc-600 font-sans ml-1 mr-1">1-2 minutes.</p>
+                Kindly wait patiently and refrain from clicking <p
+                    class="font-medium text-sm text-text1 text-zinc-600 font-sans ml-1 mr-1">"Submit"</p> multiple times.
             </div>
         </div>
         <!-- end select horizontal -->
