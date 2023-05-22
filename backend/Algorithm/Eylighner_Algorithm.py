@@ -347,19 +347,42 @@ def plot_landmark_bw(side_of_data, img, plot=True):
 
     return img
 
+################################################## Crop #########################################################
+def crop_img(img):
+  image = img.copy()
+  results = face_detector.process(image)
+  if results.detections:
+    for face in results.detections:
+        confidence = face.score
+        bounding_box = face.location_data.relative_bounding_box
+         
+        x = int(bounding_box.xmin * image.shape[1])
+        w = int(bounding_box.width * image.shape[1])
+        y = int(bounding_box.ymin * image.shape[0])
+        h = int(bounding_box.height * image.shape[0])
+         
+        crop = cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), thickness = 2)
+        crop = image[y:y + h, x:x + w]
+  return crop
 ################################################## OSA #####################################################
 def OSA_Left_Eye(img):
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  img1 = img.copy()
+  img1 = crop_img(img1)
+  #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+  new_size = (700, 700)
+  img1 = cv2.resize(img1, new_size)
+  img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB) 
 
-  image_ROI = img.copy()
+  image_ROI = img1.copy()
   image_temp = plot_landmark_eye('left', image_ROI)
   image_temp = plot_landmark_eye('right', image_ROI)
 
-  image_FILL_ROI = img.copy()
+  image_FILL_ROI = img1.copy()
   image_FILL_ROI = fill_ROI(image_FILL_ROI)
   #plt.imshow(image_FILL_ROI)
 
-  image_CALCULATE_ROI = img.copy()
+  image_CALCULATE_ROI = img1.copy()
   image_CALCULATE_ROI = plot_landmark_eye_bw('left',image_CALCULATE_ROI, plot=True) 
 
   upper = np.array([255, 0, 0])
@@ -379,17 +402,23 @@ def OSA_Left_Eye(img):
   return count_pixel_left_eye
 
 def OSA_Right_Eye(img):
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  img1 = img.copy()
+  img1 = crop_img(img1)
+  #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+  new_size = (700, 700)
+  img1 = cv2.resize(img1, new_size)
+  img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB) 
 
-  image_ROI = img.copy()
+  image_ROI = img1.copy()
   image_temp = plot_landmark_eye('left', image_ROI)
   image_temp = plot_landmark_eye('right', image_ROI)
 
-  image_FILL_ROI = img.copy()
+  image_FILL_ROI = img1.copy()
   image_FILL_ROI = fill_ROI(image_FILL_ROI)
   #plt.imshow(image_FILL_ROI)
 
-  image_CALCULATE_ROI = img.copy()
+  image_CALCULATE_ROI = img1.copy()
   image_CALCULATE_ROI = plot_landmark_eye_bw('right',image_CALCULATE_ROI, plot=True)
 
   upper = np.array([255, 0, 0])
@@ -466,9 +495,15 @@ def EBH(img):
   return distance_left, distance_right
 
 def EBH_Left_Eye(img):
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  img1 = img.copy()
+  img1 = crop_img(img1)
+  #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+  new_size = (700, 700)
+  img1 = cv2.resize(img1, new_size)
+  img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB) 
 
-  image_ROI_to_Coordinate = img.copy()
+  image_ROI_to_Coordinate = img1.copy()
   temp_image, mask_left_eye = draw_ROI('left', 'eye', image_ROI_to_Coordinate)
   contours, _ = cv2.findContours(mask_left_eye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
   sorted_contour_left_eye = sorted(contours, key=cv2.contourArea, reverse=True)[0]
@@ -476,7 +511,7 @@ def EBH_Left_Eye(img):
   left_eye_point = sorted_contour_left_eye[0][0]
 
   #image_ROI_to_Coordinate_Left
-  image_ROI_to_Coordinate = img.copy()
+  image_ROI_to_Coordinate = img1.copy()
   left_eye_brow_bw = plot_landmark_eyebrow_bw('left', image_ROI_to_Coordinate, plot=False)
   upper = np.array([255, 0, 0])
   lower = upper
@@ -498,9 +533,15 @@ def EBH_Left_Eye(img):
   return distance_left
 
 def EBH_Right_Eye(img):
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+  img1 = img.copy()
+  img1 = crop_img(img1)
+  #img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+  new_size = (700, 700)
+  img1 = cv2.resize(img1, new_size)
+  img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2RGB) 
 
-  image_ROI_to_Coordinate = img.copy()
+  image_ROI_to_Coordinate = img1.copy()
   temp_image, mask_right_eye = draw_ROI('right', 'eye', image_ROI_to_Coordinate)
   contours, _ = cv2.findContours(mask_right_eye, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
   sorted_contour_right_eye = sorted(contours, key=cv2.contourArea, reverse=True)[0]
@@ -508,7 +549,7 @@ def EBH_Right_Eye(img):
   right_eye_point = sorted_contour_right_eye[0][0]
 
   #image_ROI_to_Coordinate_Right
-  image_ROI_to_Coordinate = img.copy()
+  image_ROI_to_Coordinate = img1.copy()
   right_eye_brow_bw = plot_landmark_eyebrow_bw('right', image_ROI_to_Coordinate, plot=False)
   upper = np.array([255, 0, 0])
   lower = upper
@@ -532,23 +573,6 @@ def EBH_Right_Eye(img):
 ##################################################################################################################
 ##################################################################################################################
 ################################################## Image #########################################################
-def crop_img(img):
-  image = img.copy()
-  results = face_detector.process(image)
-  if results.detections:
-    for face in results.detections:
-        confidence = face.score
-        bounding_box = face.location_data.relative_bounding_box
-         
-        x = int(bounding_box.xmin * image.shape[1])
-        w = int(bounding_box.width * image.shape[1])
-        y = int(bounding_box.ymin * image.shape[0])
-        h = int(bounding_box.height * image.shape[0])
-         
-        crop = cv2.rectangle(image, (x, y), (x + w, y + h), (255, 255, 255), thickness = 2)
-        crop = image[y:y + h, x:x + w]
-  return crop
-
 ################################################## Same Time #####################################################
 
 def SameTime_Image_Open(img):
@@ -1285,7 +1309,7 @@ def DifTime_Image_Close_2(img):
 # function กรณีเวลาเดียวกัน จะครอปแบบ full face ขนาด 800x850 px
 def Same_Time_Op(img):
   #img = cv2.imread(img)
-  if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
+  if OSA_Left_Eye(img) >= 3800 and OSA_Right_Eye(img) >= 3800 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
     OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
@@ -1311,7 +1335,7 @@ def Same_Time_Op(img):
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # และ Dif_Time_Op_1 ตรง 1 คือหมายถึง text ที่กำกับตาเป็น R1, L1
 def Dif_Time_Op_1(img):
-  if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
+  if OSA_Left_Eye(img) >= 3800 and OSA_Right_Eye(img) >= 3800 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
     OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
@@ -1337,7 +1361,7 @@ def Dif_Time_Op_1(img):
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # และ Dif_Time_Op_2 ตรง 2 คือหมายถึง text ที่กำกับตาเป็น R2, L2
 def Dif_Time_Op_2(img):
-  if OSA_Left_Eye(img) >= 3000 and OSA_Right_Eye(img) >= 3000 : #กรณีภาพลืมตา
+  if OSA_Left_Eye(img) >= 3800 and OSA_Right_Eye(img) >= 3800 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
     OR = OSA_Right_Eye(img) #ค่า OSA ตาขวา
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
