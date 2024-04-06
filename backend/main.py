@@ -100,19 +100,25 @@ def upload_file():
 
                     num = element.content.split(", ")
                     num = [int(x) for x in num]
-                    image_path_1 = f"file {str(num[0])}.jpg"
-                    image_path_2 = f"file {str(num[1])}.jpg"
+                    image_path_1 = os.path.abspath(f"files {str(num[0])}.jpg")
+                    image_path_2 = os.path.abspath(f"files {str(num[1])}.jpg")
 
                     print("Same time op ==> ",image_path_1,image_path_2)
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    result_imagePath1 = Same_Time_Op(result_align_1)
-                    result_imagePath2 = Same_Time_Op(result_align_2)
+                    result_path1 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[0])}.jpg"))
+                    result_path2 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[1])}.jpg"))
+                    if os.path.isfile(result_path1):
+                        os.remove(result_path1)
+                    if os.path.isfile(result_path2):
+                        os.remove(result_path2)
+                    result_imagePath1 = Same_Time_Op(result_align_1, result_path1)
+                    result_imagePath2 = Same_Time_Op(result_align_2, result_path2)
                     result_0 = "test"
                     result_1 = "test"
                                         
                     model_result['0'] = {
-                        'url1' : f"{ip}/image/{result_imagePath1}",
-                        'url2' : f"{ip}/image/{result_imagePath2}",
+                        'url1' : f"{ip}/image/{str(num[0])}.jpg",
+                        'url2' : f"{ip}/image/{str(num[1])}.jpg",
                         '0' : f"{result_0}",
                         '1' : f"{result_1}",
                         'name' : ""
@@ -131,34 +137,26 @@ def upload_file():
                     Same_Time_Op(result_align_2)
 
                 print(get_ip())
-    model_result['0'] = {
-                'url1' : f"{ip}/image/files 1.jpg",
-                'url2' : f"{ip}/image/files 2.jpg",
-                '0' : f"ssss",
-                '1' : f"ssss",
-                'name' : "ssss"
-                }
+    # model_result['0'] = {
+    #             'url1' : f"{ip}/image/files 1.jpg",
+    #             'url2' : f"{ip}/image/files 2.jpg",
+    #             '0' : f"ssss",
+    #             '1' : f"ssss",
+    #             'name' : "ssss"
+    #             }
 # {0:{"url":"image_url",status,name}
 #  1:{"url":"image_url",status,name},}
 
     return model_result
 
-@app.route('/image/<imagePath>')
+@app.route('/image/<imagePath>/')
 def get_image2(imagePath:str):
-    # # Read the second image using cv2.imread()
-    image = cv2.imread(f'{imagePath}')
-    print("imageName", imagePath)
-    cv2.imwrite('./test.jpg', image)
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    path = os.path.join(dir_path,imagePath)
+    mime_type = 'image/jpeg'
+    print("DEBUG| Get image : ",path)
+    return send_file(path, mimetype=mime_type)
 
-    # Convert the image to bytes
-    _, buffer2 = cv2.imencode('.jpg', image)
-    image_bytes2 = buffer2.tobytes()
-
-    # Return the image bytes along with the appropriate MIME type
-    return send_file(
-        io.BytesIO(image_bytes2),
-        mimetype='image/jpeg'
-    )
     # Open the image file and read its contents as binary data
     # with open(f'{imagePath}', 'rb') as f:
     #     image_data = f.read()

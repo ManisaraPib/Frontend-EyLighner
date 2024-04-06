@@ -119,9 +119,10 @@ def transform(image1, image2):
     return image
 
 def align_result(image1, image2):
-       
-    auto_result1 = automatic_brightness_and_contrast(image1)
-    tf_1 = transform(image1, image2)
+    _image1 = cv2.imread(image1)
+    _image2 = cv2.imread(image2)
+    auto_result1 = automatic_brightness_and_contrast(_image1)
+    tf_1 = transform(_image1, _image2)
 
     return auto_result1, tf_1
 
@@ -1077,7 +1078,7 @@ def DifTime_Image_Close_2(img):
 ##########################################################################################################
 
 # function กรณีเวลาเดียวกัน จะครอปแบบ full face ขนาด 800x850 px
-def Same_Time_Op(img):
+def Same_Time_Op(img, path):
   if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
@@ -1090,6 +1091,7 @@ def Same_Time_Op(img):
     OR = 0 #ค่า OSA ตาขวา
     OL = 0 #ค่า OSA ตาซ้าย
     img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
+  cv2.imwrite(path, img_same)
   return ER, EL, OR, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
@@ -1137,17 +1139,18 @@ def Dif_Time_Op_2(img):
 ############################################ เวลาเรียกใช้งาน ###############################################
 
 # path ของภาพ อันนี้เขียนไว้ให้ดูเฉยๆ เวลา รับ 1 คู่ จะมี 2 ภาพ
-image_path_1 = cv2.imread('')
-image_path_2 = cv2.imread('')
+if __name__=="__main__":
+    image_path_1 = cv2.imread('')
+    image_path_2 = cv2.imread('')
 
-##########################################################################################################
-########## same time ##############
-# กรณีเวลาเดียวกัน
-# ครอปแบบ full face ขนาด 800x850 px
-# คำสั้งคือ 3 บรรทัดนี้ 
-result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-Same_Time_Op(result_align_1)
-Same_Time_Op(result_align_2)
+    ##########################################################################################################
+    ########## same time ##############
+    # กรณีเวลาเดียวกัน
+    # ครอปแบบ full face ขนาด 800x850 px
+    # คำสั้งคือ 3 บรรทัดนี้ 
+    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+    Same_Time_Op(result_align_1)
+    Same_Time_Op(result_align_2)
 
 # ฮธิบายแบบละเอียด
 
@@ -1173,9 +1176,9 @@ Same_Time_Op(result_align_2)
 # กรณีคนละเวลา
 # ครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # คำสั้งคือ 3 บรรทัดนี้ 
-result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-Dif_Time_Op_1(result_align_1)
-Dif_Time_Op_2(result_align_2)
+    result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+    Dif_Time_Op_1(result_align_1)
+    Dif_Time_Op_2(result_align_2)
 
 # ฮธิบายแบบละเอียด
 
