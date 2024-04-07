@@ -1092,13 +1092,13 @@ def Same_Time_Op(img, path):
     OL = 0 #ค่า OSA ตาซ้าย
     img_same = SameTime_Image_Close(img) #ภาพครอป full face กรณีหลับตา
   cv2.imwrite(path, img_same)
-  return ER, EL, OR, OL, img_same #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  return (ER, EL, OR, OL) #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # และ Dif_Time_Op_1 ตรง 1 คือหมายถึง text ที่กำกับตาเป็น R1, L1
-def Dif_Time_Op_1(img):
+def Dif_Time_Op_1(img, path):
   if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
@@ -1111,12 +1111,13 @@ def Dif_Time_Op_1(img):
     OR = 0 #ค่า OSA ตาขวา
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_1(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  cv2.imwrite(path, img_dif)
+  return (ER, EL, OR, OL) #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################
 # function กรณีคนละเวลา จะครอปแบบเฉพาะตา และ คิ้ว ขนาด 1000x400 px
 # และ Dif_Time_Op_2 ตรง 2 คือหมายถึง text ที่กำกับตาเป็น R2, L2
-def Dif_Time_Op_2(img):
+def Dif_Time_Op_2(img, path):
   if OSA_Left_Eye(img) >= 4000 and OSA_Right_Eye(img) >= 4000 : #กรณีภาพลืมตา
     ER = EBH_Right_Eye(img) #ค่า EBH ตาขวา
     EL = EBH_Left_Eye(img) #ค่า EBH ตาซ้าย
@@ -1129,7 +1130,8 @@ def Dif_Time_Op_2(img):
     OR = 0 #ค่า OSA ตาขวา
     OL = 0 #ค่า OSA ตาซ้าย
     img_dif = DifTime_Image_Close_2(img) #ภาพครอปเฉพาะตา และ คิ้ว  กรณีหลับตา
-  return ER, EL, OR, OL, img_dif #จะ return ค่าทั้ง 4 และ ภาพออกมา
+  cv2.imwrite(path, img_dif)
+  return (ER, EL, OR, OL) #จะ return ค่าทั้ง 4 และ ภาพออกมา
 
 ##########################################################################################################
 ##########################################################################################################
