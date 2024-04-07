@@ -93,6 +93,7 @@ def upload_file():
         print("form list:",form_list)
         print("name: ", data_name)
 
+        c = 0
         for element in data:
             if element.content != 'None' and element.content != 'null':
                 file_id = element.image_id
@@ -105,37 +106,54 @@ def upload_file():
 
                     print("Same time op ==> ",image_path_1,image_path_2)
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
-                    result_path1 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[0])}.jpg"))
-                    result_path2 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[1])}.jpg"))
+                    result_path1 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[0])}_same.jpg"))
+                    result_path2 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[1])}_same.jpg"))
                     if os.path.isfile(result_path1):
                         os.remove(result_path1)
                     if os.path.isfile(result_path2):
                         os.remove(result_path2)
-                    result_imagePath1 = Same_Time_Op(result_align_1, result_path1)
-                    result_imagePath2 = Same_Time_Op(result_align_2, result_path2)
-                    result_0 = "test"
-                    result_1 = "test"
-                                        
-                    model_result['0'] = {
-                        'url1' : f"{ip}/image/{str(num[0])}.jpg",
-                        'url2' : f"{ip}/image/{str(num[1])}.jpg",
-                        '0' : f"{result_0}",
-                        '1' : f"{result_1}",
-                        'name' : ""
+                    er1, el1, or1, ol1 = Same_Time_Op(result_align_1, result_path1)
+                    er2, el2, or2, ol2 = Same_Time_Op(result_align_2, result_path2)
+                    # swap positions of el and or due to how frontend perceives these values
+                    result_0 = [str(x) for x in [er1, or1, el1, ol1]]
+                    result_1 = [str(x) for x in [er2, or2, el2, ol2]]
+                    model_result[str(c)] = { 
+                        'url1' : f"{ip}/image/{str(num[0])}_same.jpg",
+                        'url2' : f"{ip}/image/{str(num[1])}_same.jpg",
+                        '0' : result_0,
+                        '1' : result_1,
+                        'name' : data_name[c].content
                     }
+                    c += 1
 
                 else:
                     num = element.content.split(", ")
                     num = [int(x) for x in num]
-                    image_path_1 = f"file {str(num[0])}.jpg"
-                    image_path_2 = f"file {str(num[1])}.jpg"
+                    image_path_1 = os.path.abspath(f"files {str(num[0])}.jpg")
+                    image_path_2 = os.path.abspath(f"files {str(num[1])}.jpg")
                     print("Diff time op ==> ",image_path_1,image_path_2)
 
                     result_align_1, result_align_2 = align_result(image_path_1, image_path_2) 
+                    result_path1 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[0])}_diff.jpg"))
+                    result_path2 = os.path.abspath(os.path.join("..", "public", ip, "image", f"{str(num[1])}_diff.jpg"))
+                    if os.path.isfile(result_path1):
+                        os.remove(result_path1)
+                    if os.path.isfile(result_path2):
+                        os.remove(result_path2)
 
-                    Same_Time_Op(result_align_1)
-                    Same_Time_Op(result_align_2)
-
+                    er1, el1, or1, ol1 = Dif_Time_Op_1(result_align_1, result_path1)
+                    er2, el2, or2, ol2 = Dif_Time_Op_2(result_align_2, result_path2)
+                    # swap positions of el and or due to how frontend perceives these values
+                    result_0 = [str(x) for x in [er1, or1, el1, ol1]]
+                    result_1 = [str(x) for x in [er2, or2, el2, ol2]]
+                    model_result[str(c)] = { 
+                        'url1' : f"{ip}/image/{str(num[0])}_diff.jpg",
+                        'url2' : f"{ip}/image/{str(num[1])}_diff.jpg",
+                        '0' : result_0,
+                        '1' : result_1,
+                        'name' : data_name[c].content
+                    }
+                    c += 1
                 print(get_ip())
     # model_result['0'] = {
     #             'url1' : f"{ip}/image/files 1.jpg",
